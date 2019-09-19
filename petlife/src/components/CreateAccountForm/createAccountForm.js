@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import "./loginForm.scss";
-// import FormsHandlers from "../../utils/FormsHandlers";
+import "./createAccountForm.scss";
 
-class LoginForm extends Component {
+class CreateAccountForm extends Component {
   state = {
+    name: "",
     username: "",
-    password: ""
+    password: "",
+    confirmPassword: ""
   };
 
   handleInputChange = event => {
@@ -22,8 +23,19 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div className="LoginForm">
+      <div className="CreateAccountForm">
         <form>
+          <div className="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input
+              type="text"
+              name="name"
+              className="form-control"
+              placeholder="Username"
+              value={this.state.name}
+              onChange={this.handleInputChange}
+            />
+          </div>
           <div className="form-group">
             <label for="exampleInputEmail1">Username</label>
             <input
@@ -35,8 +47,8 @@ class LoginForm extends Component {
               onChange={this.handleInputChange}
             />
             {/* <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small> */}
+                We'll never share your email with anyone else.
+              </small> */}
           </div>
           <div className="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -49,6 +61,17 @@ class LoginForm extends Component {
               onChange={this.handleInputChange}
             />
           </div>
+          <div className="form-group">
+            <label for="exampleInputPassword1">Confirm Password</label>
+            <input
+              type="password"
+              name="confirmPassword"
+              className="form-control"
+              placeholder="Password"
+              value={this.state.confirmPassword}
+              onChange={this.handleInputChange}
+            />
+          </div>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
@@ -58,4 +81,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default CreateAccountForm;

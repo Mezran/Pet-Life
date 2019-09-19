@@ -1,16 +1,18 @@
 import React, { Component }from 'react';
-import Upload from "../utils/upload";
+import fileUpload from "./upload/fileUpload";
 
 class App extends Component {
 render() {
   return (
     <div className="App">
       <div className="Card">
-        <Upload />
+        {/* <fileUpload /> */}
+        <div>hellllo</div>
       </div>
     </div>
   )
 }
 }
+
 
 export default App;

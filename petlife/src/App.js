@@ -1,18 +1,29 @@
 import React from "react";
 import LoginPage from "./pages/LoginPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar/sidebar";
+import Header from "./components/Header/header";
 
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Hello!</h1>
-        <Router>
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/createAccount" component={CreateAccountPage} />
-        </Router>
-      </div>
+      <Router>
+        <div className="container-fluid">
+          <Header />
+          <div className="row">
+            <Sidebar />
+            <div className="col-8">
+              <Route exact path="/login" component={LoginPage} />
+              <Route
+                exact
+                path="/createAccount"
+                component={CreateAccountPage}
+              />
+            </div>
+          </div>
+        </div>
+      </Router>
     );
   }
 }

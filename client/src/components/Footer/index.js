@@ -1,9 +1,9 @@
 import React from "react";
-import "./style.css";
+import "./style.scss";
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="Footer">
       <span>PetLife 2019</span>
     </footer>
   );

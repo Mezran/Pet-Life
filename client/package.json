@@ -2,6 +2,7 @@
   "name": "petlife",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "axios": "^0.19.0",

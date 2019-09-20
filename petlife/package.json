@@ -3,11 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "bcryptjs": "^2.4.3",
-=======
     "axios": "^0.19.0",
->>>>>>> b01410296c3f73672b813687bd8547a983e49241
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "formidable": "^1.2.1",

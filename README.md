@@ -1,13 +1,16 @@
 # GT-Project3-Life
 
+## Installation guide
+-
+
 ## Expectations:
-- Have real utitlity
+- Have real utility
 - market or real-world research that
-- We expect ypu to have market or real-world research that evidences your idea has REAL value to people
+- We expect you to have market or real-world research that evidences your idea has REAL value to people
 - We expect you to have done research on other web/mobile applications in your domain
 - We expect you to put serious time and thought into this.
 - we expect you to report problems you are facing along the way
-- We expect you to utilize some form of project management syste
+- We expect you to utilize some form of project management system
 - We expect you to dig deep into documentation and external resources to learn what you need.
 
 
@@ -38,8 +41,8 @@ Wed/Thurs 10:00 --> covering Authentication
 
 ## Deliverable 1:
 - Overview of the intended application and WHY you feel it's valuable
-- A set of Detailed screen-by-screen design layouts with annocations describing all UI/UX components and all data relevant to the sccreen
+- A set of Detailed screen-by-screen design layouts with annotations describing all UI/UX components and all data relevant to the screen
 - MongoDB / SQL tables breakdown
 - A breakdown of roles by group members
 - A schedule for completing of various tasks
-- Screensot of project management board that shows breakdown of tasks, assigned to group members with a schedule.
+- Screenshot of project management board that shows breakdown of tasks, assigned to group members with a schedule.

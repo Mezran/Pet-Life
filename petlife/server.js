@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = process.argv.PORT || 3000;
 
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+// require("./routes/html-routes.js")(app);
+// require("./routes/api-routes.js")(app);
 
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/petdb";

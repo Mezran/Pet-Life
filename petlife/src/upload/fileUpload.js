@@ -19,3 +19,4 @@ class FileUpload extends Component {
     }
 
 }
+export default FileUpload;

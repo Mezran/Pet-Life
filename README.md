@@ -1,7 +1,8 @@
 # GT-Project3-Life
 
 ## Installation guide
--
+- npm install
+- npm start 
 
 ## Expectations:
 - Have real utility

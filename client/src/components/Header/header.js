@@ -8,10 +8,10 @@ function Header(prop) {
         <div className="col-3 logo">
           <img src="./logo.png" alt="Pet Life Logo" />
         </div>
-        <div className="col-9 text-right navbar">Welcome{prop.userName}</div>
+        <div className="col-9 text-right navbar">{prop.userName}</div>
       </div>
     </header>
-  ); 
+  );
 }
 
 export default Header;

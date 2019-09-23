@@ -30,7 +30,11 @@
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.19",
+<<<<<<< HEAD
     "react-router-dom": "4.3.1",
     "react-spinners": "^0.6.1"
+=======
+    "react-router-dom": "^4.3.1"
+>>>>>>> b64bfac6f87062dfffc2a1339167428e82e813f5
   }
 }

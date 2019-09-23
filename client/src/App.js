@@ -7,7 +7,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Sidebar from "./components/Sidebar/sidebar";
 import Header from "./components/Header/header";
 import Footer from "./components/Footer";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
 
 class App extends React.Component {
 
@@ -27,6 +27,7 @@ class App extends React.Component {
         <div className="container-fluid">
           <Header />
           <div className="row">
+
             {this.state.user ? <Sidebar /> : null}
             <div className={this.state.user ? "col-8" :"col-12" }>
               <UserContext.Provider value = {{setUser, user}}>

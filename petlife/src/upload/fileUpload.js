@@ -1,22 +1,42 @@
-import React, { Component } from "react"
+import React, { Component } from "react";
+import Images from "./Images";
+import { API } from "../utils/API";
 
-class FileUpload extends Component {
-    constructor(props){
-        super(props)
+
+
+export default class FileUpload extends Component {
+    state = {
+        uploading: false,
+        images: []
     }
 
-    render() {
-        return (
-            <div className="fileUpload">
-                <span className="title">Upload your files</span>
-                <div className="content">
-                    <div />
-                    <div className="files" />
-                </div>
-                <div className="action" />
-            </div>
-        )
-    }
+    // render() {
+    //     return (
+           
+    //     );
+    // }
 
 }
-export default FileUpload;
+
+// for file upload component
+require("dotenv").config();
+const cors = require("cors");
+const cloudinary = require("cloudinary");
+const formData = require("express-form-data");
+
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET
+})
+
+
+
+const corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+app.post("/upload", upload);
+

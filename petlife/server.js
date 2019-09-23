@@ -3,9 +3,20 @@ const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.argv.PORT || 3000;
+
 // for file upload component
-const upload = require("./petlife/upload/upload");
+require("dotenv").config();
 const cors = require("cors");
+const cloudinary = require("cloudinary");
+const formData = require("express-form-data");
+
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME, 
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET
+})
+
+
 
 const corsOptions = {
     origin: "*",

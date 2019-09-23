@@ -1,5 +1,6 @@
 import React from "react";
 import "./petInfo.css";
+import FileUpload from "../upload/FileUpload";
 
 function PetInfo(props) {
   return (
@@ -9,7 +10,7 @@ function PetInfo(props) {
       </div>
       <div className="jumbotron petInfoJumbo">
         <div className="col text-right petInfoImage">
-            <h2>Image</h2> 
+        
         </div>
         <div className="col text-start">   
           <p>Name:</p>
@@ -18,6 +19,9 @@ function PetInfo(props) {
           <p>Prescriptions:</p>
           <p>Diet:</p>
         </div>
+      </div>
+      <div>Image
+        <FileUpload />
       </div>
       </div>
   );

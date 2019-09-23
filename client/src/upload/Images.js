@@ -3,11 +3,11 @@ import React from "react"
 export default props => 
   props.images.map((image, i) =>
     <div key={i} className="fadein">
-      <div 
+      <button
         onClick={() => props.removeImage(image.public_id)} 
-        className="delete"
-      >
-      </div>
+        className="delete">
+       Delete Image
+      </button>
       <img 
         src={image.secure_url} 
         alt="" 

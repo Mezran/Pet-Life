@@ -1,7 +1,7 @@
 import React from "react";
 import "./petInfo.css";
 
-function PetInfo() {
+function PetInfo(props) {
   return (
     <div className="petInfoCont">
       <div className="container">

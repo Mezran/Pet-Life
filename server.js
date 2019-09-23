@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -9,6 +10,7 @@ const PORT = process.env.PORT || 3001;
 const cors = require("cors");
 const cloudinary = require("cloudinary");
 const formData = require("express-form-data");
+const { CLIENT_ORIGIN } = require("./config");
 
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
@@ -17,22 +19,37 @@ cloudinary.config({
 })
 
 
+app.use(cors({ 
+  origin: CLIENT_ORIGIN 
+}))
 
-const corsOptions = {
-    origin: "*",
-    optionsSuccessStatus: 200
-};
+app.use(formData.parse())
 
-app.use(cors(corsOptions));
-app.post("/upload", upload);
+app.get('/wake-up', (req, res) => res.send("loading"))
 
-//routes 
-require("./routes/html-routes.js")(app);
+app.post('/image-upload', (req, res) => {
+
+  const values = Object.values(req.files)
+  const promises = values.map(image => cloudinary.uploader.upload(image.path))
+  
+  Promise
+    .all(promises)
+    .then(results => res.json(results))
+    .catch((err) => res.status(400).json(err))
+});
+
+app.post("/image-upload", (req, res) => {
+  const path = Object.values(Object.values(req.files)[0])[0].path
+  cloudinary.uploader.upload(path)
+    .then(image => res.json([image]))
+})
 // Middleware for app
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(express.static("public"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "./client/build")));
+}
 
 // require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
@@ -48,6 +65,12 @@ mongoose
 const db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "connection error:"));
+
+if (process.env.NODE_ENV === "production") {
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
+}
 
 app.listen(PORT, function() {
   console.log("App listening on Port: " + PORT);

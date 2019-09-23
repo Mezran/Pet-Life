@@ -48,9 +48,6 @@ class CreateAccountForm extends Component {
               value={this.state.username}
               onChange={this.handleInputChange}
             />
-            {/* <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small> */}
           </div>
           <div className="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -73,11 +70,21 @@ class CreateAccountForm extends Component {
               value={this.state.confirmPassword}
               onChange={this.handleInputChange}
             />
+            {this.state.password != this.state.confirmPassword ||
+            this.state.confirmPassword === "" ? (
+              <small id="emailHelp" className="form-text text-muted">
+                The passwords should match
+              </small>
+            ) : null}
           </div>
           <button
             onClick={this.handleSubmitEvent}
             type="submit"
             className="btn btn-primary"
+            disabled={
+              this.state.password != this.state.confirmPassword ||
+              this.state.password === ""
+            }
           >
             Submit
           </button>

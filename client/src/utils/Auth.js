@@ -1,6 +1,7 @@
 import axios from "axios";
 
 function Auth() {
+
   function logIn(username, password, cb) {
     axios
       .post("/api/authenticate", {
@@ -10,6 +11,7 @@ function Auth() {
       .then(response => {
         const token = response.data.token;
         localStorage.setItem("token", token);
+
         cb(response.data);
       })
       .catch(err => {
@@ -21,9 +23,15 @@ function Auth() {
     localStorage.removeItem("token");
     cb();
   }
+
+  function isLoggedIn () {
+    return !!localStorage.getItem("token");
+  }
+
   return {
-    logIn: logIn,
-    logOUt: logOut
+    logIn,
+    logOut,
+    isLoggedIn
   };
 }
 

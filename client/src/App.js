@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar/sidebar";
 import Header from "./components/Header/header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home"
+import PetInfo from "./pages/PetInfo"
 
 class App extends React.Component {
   render() {
@@ -18,6 +19,7 @@ class App extends React.Component {
             <div className="col-8">
               <Route exact path = '/' component = {Home}/>
               <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/petinfo" component={PetInfo} />
               <Route
                 exact
                 path="/createAccount"

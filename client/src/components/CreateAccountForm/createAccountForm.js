@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import axios from "axios";
 import "./createAccountForm.scss";
 
 class CreateAccountForm extends Component {
   state = {
-    name: "",
     username: "",
     password: "",
     confirmPassword: ""
@@ -19,23 +20,24 @@ class CreateAccountForm extends Component {
   handleSubmitEvent = event => {
     event.preventDefault();
     console.log("Submited");
+    axios
+      .post("/api/signup", {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(response => {
+        console.log(response.data);
+        this.props.history.push("/login");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
     return (
       <div className="CreateAccountForm">
         <form>
-          <div className="form-group">
-            <label for="exampleInputEmail1">Name</label>
-            <input
-              type="text"
-              name="name"
-              className="form-control"
-              placeholder="Username"
-              value={this.state.name}
-              onChange={this.handleInputChange}
-            />
-          </div>
           <div className="form-group">
             <label for="exampleInputEmail1">Username</label>
             <input
@@ -46,9 +48,6 @@ class CreateAccountForm extends Component {
               value={this.state.username}
               onChange={this.handleInputChange}
             />
-            {/* <small id="emailHelp" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small> */}
           </div>
           <div className="form-group">
             <label for="exampleInputPassword1">Password</label>
@@ -71,8 +70,22 @@ class CreateAccountForm extends Component {
               value={this.state.confirmPassword}
               onChange={this.handleInputChange}
             />
+            {this.state.password != this.state.confirmPassword ||
+            this.state.confirmPassword === "" ? (
+              <small id="emailHelp" className="form-text text-muted">
+                The passwords should match
+              </small>
+            ) : null}
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button
+            onClick={this.handleSubmitEvent}
+            type="submit"
+            className="btn btn-primary"
+            disabled={
+              this.state.password != this.state.confirmPassword ||
+              this.state.password === ""
+            }
+          >
             Submit
           </button>
         </form>
@@ -81,4 +94,4 @@ class CreateAccountForm extends Component {
   }
 }
 
-export default CreateAccountForm;
+export default withRouter(CreateAccountForm);

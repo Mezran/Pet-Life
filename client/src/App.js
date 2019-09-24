@@ -54,7 +54,7 @@ class App extends React.Component {
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/createAccount" component={CreateAccountPage} />
                 <Route exact path="/petinfo" component={PetInfo} />
-              </UserContext.Provider>
+            
               <Footer/>
             </div>
           </div>

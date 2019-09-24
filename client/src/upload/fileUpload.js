@@ -4,28 +4,27 @@ import Images from "./Images";
 import { API_URL } from "../utils/API";
 import Loading from "./Loading";
 import Button from "./Button";
-import './fileUpload.scss'
+import "./fileUpload.scss";
 
 class FileUpload extends Component {
   state = {
     uploading: false,
     images: [],
     imageURL: ""
-  }
+  };
 
   onChange = e => {
+    const files = Array.from(e.target.files);
+    this.setState({ uploading: true });
 
-    const files = Array.from(e.target.files)
-    this.setState({ uploading: true })
-
-    const formData = new FormData()
+    const formData = new FormData();
 
     files.forEach((file, i) => {
-      formData.append(i, file)
-    })
+      formData.append(i, file);
+    });
 
     fetch(`${API_URL}/image-upload`, {
-      method: 'POST',
+      method: "POST",
       body: formData
     })
       .then(res => res.json())
@@ -34,43 +33,46 @@ class FileUpload extends Component {
           uploading: false,
           images: images,
           imageURL: images[0].url
-        })
+        });
         this.props.onComplete(images[0].url);
-      })
-  }
+      });
+  };
 
   removeImage = id => {
-
     this.setState({
       images: this.state.images.filter(image => image.public_id !== id)
-    })
-  }
+    });
+  };
   render() {
-    const { uploading, images } = this.state
+    const { uploading, images } = this.state;
 
     const content = () => {
       switch (true) {
         case uploading:
-          return <Loading />
+          return <Loading />;
         case images.length > 0:
-          return <Images images={images} removeImage={this.removeImage} imageURL={this.imageURL} />
+          return (
+            <Images
+              images={images}
+              removeImage={this.removeImage}
+              imageURL={this.imageURL}
+            />
+          );
         default:
-          return <Button onChange={this.onChange} onClick={this.removeImage} />
+          return <Button onChange={this.onChange} onClick={this.removeImage} />;
       }
-    }
+    };
 
     return (
       <div>
-        <div className='button'>
-          {content()}
-        </div>
+        <div className="button">{content()}</div>
       </div>
-    )
+    );
   }
 }
 
 FileUpload.defaultProps = {
-  onComplete: function () {}
-}
+  onComplete: function() {}
+};
 
 export default FileUpload;

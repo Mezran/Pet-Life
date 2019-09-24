@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import LoginPage from "./pages/LoginPage";
 import CreateAccountPage from "./pages/CreateAccountPage";
 import UserContext from './context/UserContext';
@@ -8,15 +9,30 @@ import Sidebar from "./components/Sidebar/sidebar";
 import Header from "./components/Header/header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
+import Auth from "./utils/Auth";
 
 class App extends React.Component {
 
     state = {
-      user: null
+      user: false
     }
 
     setUser = (user) => {
       this.setState({ user });
+    }
+
+    componentDidMount() {
+      // if token exists
+        // go ask server for user associated with token
+      if (Auth.isLoggedIn()) {
+        axios.get("/api/me", {
+          headers: {
+            Authorization: "Bearer " + Auth.getToken()
+          }
+        }).then(response => {
+          this.setUser( response.data );
+        });
+      }
     }
 
   render() {
@@ -24,21 +40,21 @@ class App extends React.Component {
     const setUser = this.setUser;
     return (
       <Router>
+      <UserContext.Provider value={{setUser, user}}>
         <div className="container-fluid">
           <Header />
           <div className="row">
 
             {this.state.user ? <Sidebar /> : null}
             <div className={this.state.user ? "col-8" :"col-12" }>
-              <UserContext.Provider value = {{setUser, user}}>
                 <ProtectedRoutes exact path='/' component={Home}/>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/createAccount" component={CreateAccountPage} />
-              </UserContext.Provider>
               <Footer/>
             </div>
           </div>
         </div>
+        </UserContext.Provider>
       </Router>
     );
   }

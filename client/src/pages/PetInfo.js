@@ -1,6 +1,5 @@
 import React from "react";
 import "./petInfo.css";
-import FileUpload from "../upload/fileUpload";
 
 function PetInfo(props) {
   return (

@@ -36,7 +36,7 @@ export default class FileUpload extends Component {
       }
     
       removeImage = id => {
-        console.log("this.removeImage")
+        
         this.setState({
           images: this.state.images.filter(image => image.public_id !== id)
         })

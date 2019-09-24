@@ -21,9 +21,9 @@ cloudinary.config({
 
 app.use(cors({ 
   origin: CLIENT_ORIGIN 
-}))
+}));
 
-app.use(formData.parse())
+app.use(formData.parse());
 
 app.get('/wake-up', (req, res) => res.send("loading"))
 

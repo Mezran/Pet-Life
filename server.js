@@ -19,11 +19,11 @@ cloudinary.config({
 })
 
 
-app.use(cors({
-  origin: CLIENT_ORIGIN
-}))
+app.use(cors({ 
+  origin: CLIENT_ORIGIN 
+}));
 
-app.use(formData.parse())
+app.use(formData.parse());
 
 app.get('/wake-up', (req, res) => res.send("loading"))
 
@@ -38,11 +38,14 @@ app.post('/image-upload', (req, res) => {
     .catch((err) => res.status(400).json(err))
 });
 
+// routes
+
 app.post("/image-upload", (req, res) => {
   const path = Object.values(Object.values(req.files)[0])[0].path
   cloudinary.uploader.upload(path)
     .then(image => res.json([image]))
 })
+
 // Middleware for app
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

@@ -17,7 +17,7 @@ function Sidebar() {
           <NavLink className="nav-link" to="/prescription">Prescription</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/doctorsVisits"> Visits</NavLink>
+          <NavLink className="nav-link" to="/Visits"> Visits</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/petSitter">Pet Sitter</NavLink>

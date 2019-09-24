@@ -19,19 +19,24 @@ function Auth() {
       });
   }
 
+  function getToken () {
+    return localStorage.getItem("token");
+  }
+
   function logOut(cb) {
     localStorage.removeItem("token");
     cb();
   }
 
   function isLoggedIn () {
-    return !!localStorage.getItem("token");
+    return !!getToken();
   }
 
   return {
     logIn,
     logOut,
-    isLoggedIn
+    isLoggedIn,
+    getToken
   };
 }
 

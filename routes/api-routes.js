@@ -55,6 +55,10 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/me", authWare, function (req, res) {
+    res.json({ username: req.user.username });
+  })
+
   // testing protected routes. uses custom authWare middle ware to
   // check if the user is authenticated.
   app.get("/api/protected", authWare, function(req, res) {

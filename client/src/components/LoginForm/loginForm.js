@@ -25,7 +25,7 @@ class LoginForm extends Component {
     const password = this.state.password;
     if (username && password) {
       Auth.logIn(username, password, response => {
-        // this.context.setUser(response);
+        this.context.setUser(response);
         this.props.history.push("/");
       });
     } else {

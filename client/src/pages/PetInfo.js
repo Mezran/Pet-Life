@@ -1,6 +1,6 @@
 import React from "react";
 import "./petInfo.css";
-import FileUpload from "../upload/FileUpload";
+import FileUpload from "../upload/fileUpload";
 
 function PetInfo(props) {
   return (
@@ -10,9 +10,9 @@ function PetInfo(props) {
       </div>
       <div className="jumbotron petInfoJumbo">
         <div className="col text-right petInfoImage">
-        
+
         </div>
-        <div className="col text-start">   
+        <div className="col text-start">
           <p>Name:</p>
           <p>Nicknames:</p>
           <p>Birthday:</p>

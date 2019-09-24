@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
 import AddDetailPage from "./pages/AddDetailPage";
+import PrescriptionPage from "./pages/Prescriptions";
 
 class App extends React.Component {
   state = {
@@ -70,6 +71,11 @@ class App extends React.Component {
                       postTo="/api/test"
                     />
                   )}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/prescription"
+                  component={PrescriptionPage}
                 />
               </div>
             </div>

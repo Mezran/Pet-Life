@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./loginForm.scss";
-import UserContext from "../context/UserContext";
+import { withRouter } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 import Auth from "../../utils/Auth";
 
 class LoginForm extends Component {
@@ -74,4 +75,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);

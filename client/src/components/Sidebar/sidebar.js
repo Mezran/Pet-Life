@@ -6,6 +6,7 @@ function Sidebar() {
   return (
     <div id="sidebar" className="col-3">
 
+
       <ul className="nav flex-column">
         <li className="nav-item">
           <NavLink className="nav-link" to="/petFamily">Pet Family</NavLink>
@@ -22,6 +23,7 @@ function Sidebar() {
         <li className="nav-item">
           <NavLink className="nav-link" to="/petSitter">Pet Sitter</NavLink>
         </li>
+
 
       </ul>
     </div>

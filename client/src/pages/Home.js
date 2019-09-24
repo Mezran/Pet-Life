@@ -4,9 +4,11 @@ import React from "react";
 // import Sidebar from "../components/Sidebar/sidebar";
 import HomeBox from "../components/HomeBox/index";
 
+
 function Home() {
     return (
         <HomeBox />
+
 
     );
 }

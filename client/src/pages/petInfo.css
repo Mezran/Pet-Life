@@ -1,0 +1,15 @@
+.petInfoJumbo {
+    background: rgb(238, 238, 229);
+    margin: 25px;
+    box-shadow: 5px 5px 12px rgb(107, 107, 107);
+    font-weight: bolder;
+    border-radius: 40px;
+}
+
+.petInfoImage {
+    float: right;
+}
+
+.petInfoCont {
+    margin: 75px;
+}

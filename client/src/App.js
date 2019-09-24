@@ -7,18 +7,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import Sidebar from "./components/Sidebar/sidebar";
 import Header from "./components/Header/header";
-<<<<<<< HEAD
-// import Footer from "./components/Footer";
-import Home from "./pages/Home"
-import Visits from "./pages/Visits"
-=======
 import Footer from "./components/Footer";
 
+import Visits from "./pages/Visits"
 import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
 
->>>>>>> d12808786cef202e9347351073236abb3cd457d5
+
 
 
 class App extends React.Component {
@@ -54,24 +50,16 @@ class App extends React.Component {
         <div className="container-fluid">
           <Header />
           <div className="row">
-<<<<<<< HEAD
-            <Sidebar />
-            <div className="col-8">
-              <Route exact path='/' component={Home} />
-              <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/createAccount" component={CreateAccountPage} />
-              <Route exact path="/Visits" component={Visits} />
-              {/* <Footer/> */}
-=======
+
             {this.state.user ? <Sidebar /> : null}
             <div className={this.state.user ? "col-8" :"col-12" }>
                 <ProtectedRoutes exact path='/' component={Home}/>
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/createAccount" component={CreateAccountPage} />
                 <Route exact path="/petinfo" component={PetInfo} />
+                <Route exact path="/Visits" component={Visits} />
             
               <Footer/>
->>>>>>> d12808786cef202e9347351073236abb3cd457d5
             </div>
           </div>
         </div>

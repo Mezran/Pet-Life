@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const authWare = require("../customMiddleware/authware");
 var db = require("../models");
 const Pet = require("../models/Pets");
+const PetSitter = require("../models/PetSitterMod");
 
 
 
@@ -94,4 +95,28 @@ module.exports = function (app) {
       message: user.username + ", should be protected"
     });
   });
+
+  app.post("/api/petSitters", function (req, res) {
+    console.log(req.body);
+    PetSitter.create(req.body)
+      .then(result => {
+        res.json({
+          message: "sitter created"
+        });
+      })
+      .catch(function (err) {
+        console.log(err)
+      });
+  })
+
+  app.get("/api/petSitters", function (res) {
+    PetSitter.find({})
+    .then(sitters => res.json(sitters)
+    )
+    .catch(function (err) {
+      console.log(err);
+    });
+  })
 };
+
+

@@ -15,7 +15,7 @@ class PastVisits extends Component {
         return (
             < >
                 <h2>Past Visits</h2>
-                <table class="table table-dark">
+                <table className="table table-dark">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
@@ -31,7 +31,7 @@ class PastVisits extends Component {
                                     <td>{result.date}</td>
                                     <td>{result.doctorsName}</td>
                                     <td>{result.hospital}</td>
-                                    <td> <Link>See Details</Link></td>
+                                    <td> <Link to="/adddetail">See Details</Link></td>
                                 </>
                             ))}
 

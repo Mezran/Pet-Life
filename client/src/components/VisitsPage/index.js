@@ -28,7 +28,7 @@ class VisitsPage extends Component {
           <PastVisits />
 
           <h2>Add Visits</h2>
-          <table class="table">
+          <table className="table">
             <tbody>
               <tr>
                 <td>
@@ -64,7 +64,7 @@ class VisitsPage extends Component {
 
                 <td>
                   {" "}
-                  <Link>Add Details</Link>
+                  <Link to="/adddetail">Add Details</Link>
                 </td>
               </tr>
             </tbody>

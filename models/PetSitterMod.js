@@ -1,22 +1,23 @@
 const mongoose = require("mongoose")
 
 const petSitterSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        trim: true
-      },
-      image: {
-        data: Buffer, contentType: String
-      },
-      phoneNum: {
-        type: String 
-      },
-      address: {
-          type: String
-      },
-      other: {
-        type: String
-      }
+  file: {
+    // data: Buffer,
+    type: String
+  },
+  name: {
+    type: String,
+    trim: true
+  },
+  number: {
+    type: String
+  },
+  address: {
+    type: String
+  },
+  other: {
+    type: String
+  }
 });
 
 const PetSitter = mongoose.model("PetSitter", petSitterSchema);

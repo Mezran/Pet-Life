@@ -14,6 +14,7 @@ import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
 import AddDetailPage from "./pages/AddDetailPage";
 import PetSitter from "./pages/PetSitter";
+import CreatePetSitter from "./pages/CreatePetSitter";
 import PrescriptionPage from "./pages/Prescriptions";
 import "./global.scss";
 
@@ -75,7 +76,16 @@ class App extends React.Component {
                     />
                   )}
                 />
-                <Route exact path="/petSitter" component={PetSitter} />
+                <ProtectedRoutes
+                  exact
+                  path="/petSitter"
+                  component={PetSitter}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/petSitter/createPetSitter"
+                  component={CreatePetSitter}
+                />
                 <ProtectedRoutes
                   exact
                   path="/prescription"

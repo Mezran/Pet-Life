@@ -1,87 +1,52 @@
-import React, { Component} from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
-import FileUpload from "../upload/fileUpload";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import axios from "axios";
 
-export default class PetSitter extends Component {
-    
-      state = {
-            name: "",
-            image: [],
-            number:"",
-            address: "",
-            other: ""
-        }
-   
-    onChange = ({target: {name, value}}) => {
+class PetSitter extends Component {
+
+    state = {
+        petSitters: []
+    }
+componentDidMount() {
+    axios.get("/api/petSitters").then(function (res) {
+        console.log(res.data)
         this.setState({
-            [name]: value
+            petSitters: res.data
         })
-    }
-    
-    onSubmit = e => {
-      e.preventDefault();
-      console.log(`Sitter info: ${this.state.name}, ${this.state.image}, ${this.state.number}, ${this.state.address}, and ${this.state.other}`)
-      this.setState({
-        name: "",
-        image: "",
-        number: "",
-        address: "",
-        other: ""
-      })
-    }
-
-    render() {
-        return (
-           <Link to="/petSitter">
-           <div style={{marginTop: 10}}>
-                <h3>Sitter Information</h3>
-                <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Name:  </label>
-                        <input type="text" 
-                        className="form-control"
-                        name="name"
-                        value={this.state.name}
-                        onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Picture: <FileUpload /></label>
-                        <input type="" 
-                        className="form-control"
-                        name="image"
-                        value={this.state.image}
-                        onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Phone Number: </label>
-                        <input type="text" 
-                        className="form-control"
-                        name="number"
-                        value={this.state.number}
-                        onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Address: </label>
-                        <input type="text" 
-                        className="form-control"
-                        name="address"
-                        value={this.state.address}
-                        onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Other notes: </label>
-                        <input type="text" 
-                        className="form-control"
-                        name="other"
-                        value={this.state.other}
-                        onChange={this.onChange}/>
-                    </div>
-                    <div className="form-group">
-                        <input type="submit" value="Register Sitter" className="btn btn-primary" onClick={this.onSubmit}/>
-                    </div>
-                </form>
-            </div>
-            </Link>
-        )
-    }
+    })
 }
+
+
+render (){
+
+    return (<div>
+            <Link
+              to="/petSitter/createPetSitter"
+              className="btn btn-warning btn-lg"
+            >
+              Add a pet sitter!
+            </Link> 
+            {this.state.petSitters.map(item => 
+                  <div className="sitterCard">
+                  <div className="card">
+                    <div className="row ">
+                      <div className="col-md-4">
+                        <img src={item.file}></img>
+                      </div>
+                      <div className="col-md-8">
+                        <div className="card-body">
+                          <h4 className="card-name">{item.name}</h4>
+                          <h5 className="card-number">{item.number}</h5>
+                          <h6 className="card-address">{item.address}</h6>
+                          <p className="card-other">{item.other}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>)}
+    </div>
+    )
+
+}
+}
+export default PetSitter;

@@ -10,7 +10,6 @@ class petFamily extends React.Component {
       petName: "",
       breed: "",
       birthday: "",
-      // prescriptions: [],
       allergies: "", 
       temperament: "", 
       diet: "",
@@ -23,13 +22,14 @@ class petFamily extends React.Component {
         name: this.state.petName,
         breed: this.state.breed, 
         birthday: this.state.birthday, 
-        prescriptions: this.state.prescriptions,
         allergies: this.state.allergies, 
         temperament: this.state.temperament, 
         diet: this.state.diet, 
         directions: this.state.directions
     }
-    API.savePet(petData).then( 
+    API.savePet(petData).then( data => {
+      console.log(data)
+    }
         // return petID from mongo and apply to User model.
         
     )
@@ -72,15 +72,7 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.birthday}
           />
-          <label >prescriptions</label>
-          {/* <input
-            name="prescriptions"
-            type="text"
-            className="form-control"
-            onChange={this.handleInputChange}
-            value={this.state.prescriptions}
-          /> */}
-          <label >allergies</label>
+          <label >Allergies</label>
           <input
             name="allergies"
             type="text"
@@ -88,7 +80,7 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.allergies}
           />
-          <label >temperament</label>
+          <label >Temperament</label>
           <input
             name="temperament"
             type="text"
@@ -96,7 +88,7 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.temperament}
           />
-          <label >diet</label>
+          <label >Diet</label>
           <input
             name="diet"
             type="text"
@@ -104,7 +96,7 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.diet}
           />
-          <label >directions</label>
+          <label >Directions</label>
           <textarea
             name="directions"
             type="text"

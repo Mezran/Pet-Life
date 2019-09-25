@@ -1,13 +1,10 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const authWare = require("../customMiddleware/authware");
-const petsConroller = require("../controllers/petsConroller");
-// const router = require("express").Router();
+const {petsController, userController} = require('../controllers');
+
 var db = require("../models");
 const Pet = require("../models/Pets");
-
-
-
 
 module.exports = function (app) {
   // post requests to /api/signup;
@@ -100,5 +97,8 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/api/savePets", petsConroller.create);
+  app.post("/api/savePets", petsController.create);
+
+  app.get("/api/getPets/:id", petsController.findById)
+
 };

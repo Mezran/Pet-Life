@@ -1,7 +1,35 @@
 import React from "react";
 import "./petInfo.css";
+import API from "../utils/API2";
+import axios from "axios";
 
-function PetInfo(props) {
+class PetInfo extends React.Component {
+
+  state = {
+    petName: "",
+    breed: "",
+    birthday: "",
+    allergies: "", 
+    temperament: "", 
+    diet: "",
+    directions: "",
+    id: "5d8bdcb47c2ad61619314d9a"
+
+};
+
+componentDidMount () {
+  axios.get("/api/getPets/" + this.state.id).then( data => {
+    console.log(data)
+    this.setState({ 
+      petName: data.data.name,
+      breed: data.data.breed,
+      diet: data.data.diet,
+      birthday: data.data.birthday,
+      temperament: data.data.temperament })
+  })
+}
+
+  render() {
   return (
     <div className="petInfoCont">
       <div className="container">
@@ -10,15 +38,16 @@ function PetInfo(props) {
       <div className="jumbotron petInfoJumbo">
         <div className="col text-right petInfoImage"></div>
         <div className="col text-start">
-          <p>Name:</p>
-          <p>Nicknames:</p>
-          <p>Birthday:</p>
-          <p>Prescriptions:</p>
-          <p>Diet:</p>
+          <p>Name: {this.state.petName}</p>
+          <p>Breed: {this.state.breed}</p>
+          <p>Birthday: {this.state.birthday}</p>
+          <p>Temperament: {this.state.temperament}</p>
+          <p>Diet: {this.state.diet}</p>
         </div>
       </div>
     </div>
   );
+}
 }
 
 export default PetInfo;

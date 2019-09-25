@@ -6,8 +6,9 @@ export default {
         return axios.post("/api/savePets", petData)
     },
 
-    getPet: function(petData) {
-        return axios.get("/api/getPets", petData)
+    getPet: function() {
+        console.log("api12")
+        return axios.get("/api/getPets")
     }
 
     

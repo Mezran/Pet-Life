@@ -15,6 +15,8 @@ import PetInfo from "./pages/PetInfo";
 
 import petFamily from "./pages/petFam";
 import AddDetailPage from "./pages/AddDetailPage";
+import PetSitter from "./pages/PetSitter";
+import CreatePetSitter from "./pages/CreatePetSitter";
 import PrescriptionPage from "./pages/Prescriptions";
 import DetailsPage from "./pages/DetailsPage";
 import PetFamily from "./pages/PetFamily";
@@ -91,7 +93,16 @@ class App extends React.Component {
                   path="/visits/viewDetail"
                   component={DetailsPage}
                 />
-
+                <ProtectedRoutes
+                  exact
+                  path="/petSitter"
+                  component={PetSitter}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/petSitter/createPetSitter"
+                  component={CreatePetSitter}
+                />
                 <ProtectedRoutes
                   exact
                   path="/prescription"

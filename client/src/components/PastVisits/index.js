@@ -26,7 +26,7 @@ class PastVisits extends Component {
         return (
             < >
                 <h2>Past Visits</h2>
-                <table class="table table-dark">
+                <table className="table table-dark">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>

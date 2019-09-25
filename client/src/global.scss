@@ -1,5 +1,18 @@
 $orange: #f77000;
 
+.body-container {
+  min-height: calc(100vh - 180px);
+  .LoginPage {
+    padding: 50px;
+    h1 {
+      margin-bottom: 40px;
+      color: #333;
+    }
+    .btn-outline-secondary {
+      margin-left: 20px;
+    }
+  }
+}
 .main-content {
   padding: 50px 70px;
 }

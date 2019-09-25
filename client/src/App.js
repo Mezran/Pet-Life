@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
 import AddDetailPage from "./pages/AddDetailPage";
+import PetSitter from "./pages/PetSitter";
 
 class App extends React.Component {
   state = {
@@ -71,6 +72,7 @@ class App extends React.Component {
                     />
                   )}
                 />
+                <Route exact path="/petSitter" component={PetSitter} />
               </div>
             </div>
           </div>

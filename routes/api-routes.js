@@ -1,8 +1,11 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const authWare = require("../customMiddleware/authware");
+const petsConroller = require("../controllers/petsConroller");
+// const router = require("express").Router();
 var db = require("../models");
 const Pet = require("../models/Pets");
+
 
 
 
@@ -51,6 +54,8 @@ module.exports = function (app) {
   });
 
   // post requests to see if the user is authenticated.
+
+
   app.post("/api/authenticate", function (req, res) {
     console.log(req.body);
     const { username, password } = req.body;
@@ -94,4 +99,6 @@ module.exports = function (app) {
       message: user.username + ", should be protected"
     });
   });
+
+  app.post("/api/savePets", petsConroller.create);
 };

@@ -7,13 +7,14 @@ class PetInfo extends React.Component {
 
   state = {
     petName: "",
+    nicknames: "",
     breed: "",
     birthday: "",
     allergies: "", 
     temperament: "", 
     diet: "",
     directions: "",
-    id: "5d8bdcb47c2ad61619314d9a"
+    id: "5d8be355cc699e177e44d2b2"
 
 };
 
@@ -25,7 +26,8 @@ componentDidMount () {
       breed: data.data.breed,
       diet: data.data.diet,
       birthday: data.data.birthday,
-      temperament: data.data.temperament })
+      temperament: data.data.temperament,
+      nicknames: data.data.nicknames })
   })
 }
 
@@ -39,6 +41,7 @@ componentDidMount () {
         <div className="col text-right petInfoImage"></div>
         <div className="col text-start">
           <p>Name: {this.state.petName}</p>
+          <p>Nicknames: {this.state.nicknames}</p>
           <p>Breed: {this.state.breed}</p>
           <p>Birthday: {this.state.birthday}</p>
           <p>Temperament: {this.state.temperament}</p>

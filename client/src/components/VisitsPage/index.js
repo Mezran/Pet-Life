@@ -1,10 +1,14 @@
 import "./style.scss";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import PastVisits from "../PastVisits";
 
 class VisitsPage extends Component {
   state = {
-    aresult: []
+    date: "",
+    doctorsName: "",
+    hospital: ""
   };
 
   handleInputChange = event => {
@@ -13,65 +17,20 @@ class VisitsPage extends Component {
       [name]: value
     });
   };
+  saveVisit = visit => {
+    axios.post("/api/visits", visit).then(console.log("set state as saved"));
+  };
 
   render() {
     return (
-      <div className="">
+      <div className="VisitPage">
         <div className="card">
-          <h2>Past Visits</h2>
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Doctors name</th>
-                <th scope="col">Hospital</th>
-                <th scope="col">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  {" "}
-                  <Link>See Details</Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <h2>Future Visits</h2>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Date</th>
-                <th scope="col">Doctors name</th>
-                <th scope="col">Hospital</th>
-                <th scope="col">Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  {" "}
-                  <Link>See Details</Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <PastVisits />
 
           <h2>Add Visits</h2>
           <table class="table">
             <tbody>
               <tr>
-                <th scope="row">1</th>
                 <td>
                   <input
                     type="text"
@@ -109,7 +68,18 @@ class VisitsPage extends Component {
                 </td>
               </tr>
             </tbody>
-            <button>Save</button>
+            <button
+              onClick={() => {
+                this.saveVisit({
+                  date: this.state.date,
+                  docName: this.state.doctorsName,
+                  hospital: this.state.hospital
+                });
+              }}
+              className="btn btn-outline-dark"
+            >
+              Save
+            </button>
           </table>
         </div>
       </div>

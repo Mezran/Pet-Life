@@ -1,9 +1,13 @@
 .Header {
   background: #ccc;
-  margin-right: 0;
+  margin-right: -15px;
+  margin-left: -15px;
   height: 80px;
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
   .logo {
-    background: #e6e6e6;
     padding-left: 0;
     padding-right: 0;
     text-align: center;
@@ -13,6 +17,6 @@
     margin: 10px auto;
   }
   .navbar {
-    
+    text-align: right;
   }
 }

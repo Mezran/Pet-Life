@@ -1,5 +1,13 @@
 #sidebar {
-  height: calc(100vh - 80px);
-  box-shadow: 2px 2px;
-  font-size: 30px;
+  font-size: 22px;
+  background: #f2f2f2;
+  padding: 0;
+  .nav-link {
+    padding: 17px 30px;
+    color: #f77000;
+  }
+  .nav-link.active {
+    background: #f77000;
+    color: #fff;
+  }
 }

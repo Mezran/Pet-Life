@@ -25,7 +25,7 @@ const doctorVisitSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
-  Address: {
+  hospital: {
     type: String
   },
   details: {
@@ -58,9 +58,13 @@ const petSchema = new mongoose.Schema({
     type: String,
   },
   directions: { type: String },
-  docVisits: [doctorVisitSchema]
+  docVisits: [doctorVisitSchema],
+  image: {
+    type: String
+  }
 });
 
 const Pet = mongoose.model("Pets", petSchema);
 
 module.exports = Pet;
+ 

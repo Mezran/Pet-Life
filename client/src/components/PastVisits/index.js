@@ -4,12 +4,23 @@ import axios from "axios";
 
 class PastVisits extends Component {
     state = {
-        results: [],
+        results: [
+            {
+                date: "1",
+                doctorsName: "First doctorsName",
+                hospital: "pet Hospital 1",
+            },
+            {
+                date: "2",
+                doctorsName: "Second doctorsName",
+                hospital: "pet Hospital 2",
+            }
+        ]
     }
 
-    getVisit = res => {
-        axios.get('/api/visits').then(this.setState({ results: res.data }))
-    }
+    // getVisit = res => {
+    //     axios.get('/api/visits').then(this.setState({ results: res.data }))
+    // }
 
     render() {
         return (
@@ -25,17 +36,17 @@ class PastVisits extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            {this.state.results.map(result => (
-                                <>
-                                    <td>{result.date}</td>
-                                    <td>{result.doctorsName}</td>
-                                    <td>{result.hospital}</td>
-                                    <td> <Link>See Details</Link></td>
-                                </>
-                            ))}
 
-                        </tr>
+                        {this.state.results.map(result => (
+                            <tr>
+                                <td>{result.date}</td>
+                                <td>{result.doctorsName}</td>
+                                <td>{result.hospital}</td>
+                                <td> <Link to="/visits/viewDetail" >See Details</Link></td>
+                            </tr>
+                        ))}
+
+
 
                     </tbody>
                 </table>

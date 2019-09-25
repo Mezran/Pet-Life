@@ -16,6 +16,8 @@ import PetInfo from "./pages/PetInfo";
 import petFamily from "./pages/petFam";
 import AddDetailPage from "./pages/AddDetailPage";
 import PrescriptionPage from "./pages/Prescriptions";
+import DetailsPage from "./pages/DetailsPage";
+
 import "./global.scss";
 
 class App extends React.Component {
@@ -64,6 +66,7 @@ class App extends React.Component {
                   component={CreateAccountPage}
                 />
                 <Route exact path="/petinfo" component={PetInfo} />
+
                 <Route exact path="/petFamily" component={petFamily} />
                 <Route exact path="/Visits" component={Visits} />
                 <ProtectedRoutes
@@ -79,6 +82,11 @@ class App extends React.Component {
                 />
                 <ProtectedRoutes
                   exact
+                  path="/visits/viewDetail"
+                  component={DetailsPage}
+                />
+                <ProtectedRoutes
+                  exact
                   path="/prescription"
                   component={PrescriptionPage}
                 />
@@ -90,6 +98,17 @@ class App extends React.Component {
                       {...props}
                       pageTitle="Presciption"
                       postTo="/api/prescription"
+                    />
+                  )}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/visits/addDetail"
+                  render={props => (
+                    <AddDetailPage
+                      {...props}
+                      pageTitle="Visits"
+                      postTo="/api/visits"
                     />
                   )}
                 />

@@ -6,7 +6,7 @@ function Family() {
     return (
         <>
             <button className="familyCard">
-                <Link to="/petfamilyinfo">
+                <Link to="/petinfo">
                     <div >
                         <img src="https://animalsafari.com/Georgia/wp-content/uploads/2016/03/wild-animal-safar-drive-thru-animal-park-tiger.jpg" className="card-img-top familyCard" alt="first pet" />
                         <div className="card-body">

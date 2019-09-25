@@ -13,6 +13,8 @@ import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
 import AddDetailPage from "./pages/AddDetailPage";
+import PrescriptionPage from "./pages/Prescriptions";
+import "./global.scss";
 
 class App extends React.Component {
   state = {
@@ -49,7 +51,9 @@ class App extends React.Component {
             <Header />
             <div className="row">
               {this.state.user ? <Sidebar /> : null}
-              <div className={this.state.user ? "col-8" : "col-12"}>
+              <div
+                className={this.state.user ? "col-9 main-content" : "col-12"}
+              >
                 <ProtectedRoutes exact path="/" component={Home} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route
@@ -67,6 +71,22 @@ class App extends React.Component {
                       {...props}
                       pageTitle="Document"
                       postTo="/api/test"
+                    />
+                  )}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/prescription"
+                  component={PrescriptionPage}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/prescription/addDetail"
+                  render={props => (
+                    <AddDetailPage
+                      {...props}
+                      pageTitle="Presciption"
+                      postTo="/api/prescription"
                     />
                   )}
                 />

@@ -12,10 +12,18 @@ import Visits from "./pages/Visits";
 import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
+
+import petFamily from "./pages/petFam";
 import AddDetailPage from "./pages/AddDetailPage";
 import PetSitter from "./pages/PetSitter";
 import CreatePetSitter from "./pages/CreatePetSitter";
 import PrescriptionPage from "./pages/Prescriptions";
+import DetailsPage from "./pages/DetailsPage";
+import PetFamily from "./pages/PetFamily";
+import ComingSoon from "./pages/ComingSoon";
+
+
+
 import "./global.scss";
 
 class App extends React.Component {
@@ -51,12 +59,12 @@ class App extends React.Component {
         <UserContext.Provider value={{ setUser, user }}>
           <div className="container-fluid">
             <Header />
-            <div className="row">
+            <div className="row body-container">
               {this.state.user ? <Sidebar /> : null}
               <div
                 className={this.state.user ? "col-9 main-content" : "col-12"}
               >
-                <ProtectedRoutes exact path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route
                   exact
@@ -64,7 +72,11 @@ class App extends React.Component {
                   component={CreateAccountPage}
                 />
                 <Route exact path="/petinfo" component={PetInfo} />
-                <Route exact path="/Visits" component={Visits} />
+
+                <Route exact path="/visits" component={Visits} />
+                <Route exact path="/petfamily" component={PetFamily} />
+                <Route exact path="/comingsoon" component={ComingSoon} />
+
                 <ProtectedRoutes
                   exact
                   path="/addDetail"
@@ -75,6 +87,11 @@ class App extends React.Component {
                       postTo="/api/test"
                     />
                   )}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/visits/viewDetail"
+                  component={DetailsPage}
                 />
                 <ProtectedRoutes
                   exact
@@ -99,6 +116,17 @@ class App extends React.Component {
                       {...props}
                       pageTitle="Presciption"
                       postTo="/api/prescription"
+                    />
+                  )}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/visits/addDetail"
+                  render={props => (
+                    <AddDetailPage
+                      {...props}
+                      pageTitle="Visits"
+                      postTo="/api/visits"
                     />
                   )}
                 />

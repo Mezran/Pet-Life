@@ -11,3 +11,4 @@ function AddDetailPage(props) {
 }
 
 export default AddDetailPage;
+ 

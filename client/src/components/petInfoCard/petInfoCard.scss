@@ -1,0 +1,13 @@
+.PetInfoCard {
+  background: rgb(238, 238, 229);
+  margin: 25px;
+  box-shadow: 5px 5px 12px rgba(107, 107, 107, 0.2);
+  padding: 20px;
+  strong {
+    font-weight: bolder;
+  }
+  img {
+    margin-top: 20px;
+    border-radius: 50%;
+  }
+}

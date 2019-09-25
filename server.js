@@ -19,8 +19,8 @@ cloudinary.config({
 })
 
 
-app.use(cors({ 
-  origin: CLIENT_ORIGIN 
+app.use(cors({
+  origin: CLIENT_ORIGIN
 }));
 
 app.use(formData.parse());

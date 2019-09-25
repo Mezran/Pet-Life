@@ -68,7 +68,7 @@ class PrescriptionsPage extends Component {
         </div>
       </div>
     );
-  }
+  } 
 }
 
 export default PrescriptionsPage;

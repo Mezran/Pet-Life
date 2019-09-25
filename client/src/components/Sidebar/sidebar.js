@@ -9,7 +9,7 @@ function Sidebar() {
 
       <ul className="nav flex-column">
         <li className="nav-item">
-          <NavLink className="nav-link" to="/petFamily">Pet Family</NavLink>
+          <NavLink className="nav-link" to="/PetFamily">Pet Family</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/petInfo">Pet Info</NavLink>

@@ -15,6 +15,10 @@ import PetInfo from "./pages/PetInfo";
 import AddDetailPage from "./pages/AddDetailPage";
 import PrescriptionPage from "./pages/Prescriptions";
 import DetailsPage from "./pages/DetailsPage";
+import PetFamily from "./pages/PetFamily";
+import CommingSoon from "./pages/ComingSoon";
+
+
 
 import "./global.scss";
 
@@ -65,6 +69,8 @@ class App extends React.Component {
                 />
                 <Route exact path="/petinfo" component={PetInfo} />
                 <Route exact path="/visits" component={Visits} />
+                <Route exact path="/petfamily" component={PetFamily} />
+                <Route exact path="/comingsoon" component={CommingSoon} />
                 <ProtectedRoutes
                   exact
                   path="/addDetail"
@@ -81,6 +87,7 @@ class App extends React.Component {
                   path="/visits/viewDetail"
                   component={DetailsPage}
                 />
+
                 <ProtectedRoutes
                   exact
                   path="/prescription"

@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const authWare = require("../customMiddleware/authware");
+const petsConroller = require("../controllers/petsConroller");
+const router = require("express").Router();
 
 module.exports = function(app) {
   // post requests to /api/signup;
@@ -25,7 +27,7 @@ module.exports = function(app) {
 
   // post requests to see if the user is authenticated.
   app.post("/api/authenticate", function(req, res) {
-    console.log(req.body);
+    console.log(req.body + "auth");
     const { username, password } = req.body;
     User.findOne({
       username: username
@@ -67,4 +69,6 @@ module.exports = function(app) {
       message: user.username + ", should be protected"
     });
   });
+
+  app.post("/api/savePets", petsConroller.create);
 };

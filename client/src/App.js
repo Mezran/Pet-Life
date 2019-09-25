@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
+import petFamily from "./pages/petFam"
 
 
 
@@ -54,7 +55,7 @@ class App extends React.Component {
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/createAccount" component={CreateAccountPage} />
                 <Route exact path="/petinfo" component={PetInfo} />
-            
+                <Route exact path="/petFamily" component={petFamily} />
               <Footer/>
             </div>
           </div>

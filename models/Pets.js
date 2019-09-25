@@ -29,7 +29,9 @@ const doctorVisitSchema = new mongoose.Schema({
     type: String
   },
   details: {
-    type: String
+    title: String,
+    url: String,
+    comments: String
   }
 })
 
@@ -38,8 +40,8 @@ const petSchema = new mongoose.Schema({
     type: String, 
     required: true,
     trim: true },
-  petId: { type: String, 
-    required: true },
+  // petId: { type: Integer, 
+  //   required: true },
   breed: { 
     type: String,
     trim: true },

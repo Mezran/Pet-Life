@@ -12,11 +12,14 @@ import Visits from "./pages/Visits";
 import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
+
+import petFamily from "./pages/petFam"
 import AddDetailPage from "./pages/AddDetailPage";
 import PrescriptionPage from "./pages/Prescriptions";
 import DetailsPage from "./pages/DetailsPage";
 
 import "./global.scss";
+
 
 class App extends React.Component {
   state = {
@@ -64,7 +67,12 @@ class App extends React.Component {
                   component={CreateAccountPage}
                 />
                 <Route exact path="/petinfo" component={PetInfo} />
+
+                <Route exact path="/petFamily" component={petFamily} />
+              <Footer/>
+
                 <Route exact path="/visits" component={Visits} />
+
                 <ProtectedRoutes
                   exact
                   path="/addDetail"
@@ -109,6 +117,7 @@ class App extends React.Component {
                   )}
                 />
               </div>
+
             </div>
           </div>
         </UserContext.Provider>

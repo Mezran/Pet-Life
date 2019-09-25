@@ -8,8 +8,6 @@ import HomeBox from "../components/HomeBox/index";
 function Home() {
     return (
         <HomeBox />
-
-
     );
 }
 

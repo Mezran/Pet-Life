@@ -79,6 +79,17 @@ class App extends React.Component {
                   path="/prescription"
                   component={PrescriptionPage}
                 />
+                <ProtectedRoutes
+                  exact
+                  path="/prescription/addDetail"
+                  render={props => (
+                    <AddDetailPage
+                      {...props}
+                      pageTitle="Presciption"
+                      postTo="/api/prescription"
+                    />
+                  )}
+                />
               </div>
             </div>
           </div>

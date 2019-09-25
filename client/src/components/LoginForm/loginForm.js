@@ -25,14 +25,15 @@ class LoginForm extends Component {
     const username = this.state.username;
     const password = this.state.password;
     if (username && password) {
-      try {
-        Auth.logIn(username, password, response => {
+      Auth.logIn(username, password)
+        .then(response => {
+          console.log(response);
           this.context.setUser(response);
           this.props.history.push("/");
+        })
+        .catch(err => {
+          this.setState({ err: true });
         });
-      } catch (error) {
-        alert("asdasd");
-      }
     } else {
       this.setState({
         err: true

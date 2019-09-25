@@ -18,5 +18,18 @@
   }
   .navbar {
     text-align: right;
+    justify-content: flex-end;
+    span {
+      margin-right: 15px;
+      padding-right: 30px;
+      border-right: solid 1px #333;
+    }
+    .btn {
+      color: #333;
+      &:hover {
+        color: #f77000;
+        text-decoration: none;
+      }
+    }
   }
 }

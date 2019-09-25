@@ -1,36 +1,58 @@
-import React from "react";
+import React, { Component } from "react";
 import "./header.scss";
 import UserContext from "../../context/UserContext";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Auth from "../../utils/Auth";
 
-const Header = props => (
-  <UserContext.Consumer>
-    {context => {
-      return (
-        <header className="Header">
-          <div className="row">
-            <div className="col-3 logo">
-              <img src="./logo.png" alt="Pet Life Logo" />
-            </div>
-            <div className="col-9 text-right navbar">
-              {context.user ? (
-                <div>
-                  <span>
-                    Username:<strong> ${context.user.username}</strong>
-                  </span>
-                  <Link to="/">Log Out</Link>
+class Header extends Component {
+  handleLogOut = () => {
+    Auth.logOut();
+    // cb missing
+  };
+
+  render() {
+    return (
+      <UserContext.Consumer>
+        {context => {
+          return (
+            <header className="Header">
+              <div className="row">
+                <div className="col-3 logo">
+                  <img src="./logo.png" alt="Pet Life Logo" />
                 </div>
-              ) : (
-                <span>
-                  <Link to="/Log In">Log Out</Link>
-                </span>
-              )}
-            </div>
-          </div>
-        </header>
-      );
-    }}
-  </UserContext.Consumer>
-);
+                <div className="col-9 text-right navbar">
+                  {context.user ? (
+                    <>
+                      <span>
+                        Username:<strong> {context.user.username}</strong>
+                      </span>
+                      <button
+                        onClick={this.handleLogOut}
+                        className="btn btn-link"
+                      >
+                        Log Out
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <span>
+                        <Link className="btn btn-link" to="/login">
+                          Log In
+                        </Link>
+                      </span>
+                      <Link className="btn btn-link" to="/createAccount">
+                        Create New Account
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </div>
+            </header>
+          );
+        }}
+      </UserContext.Consumer>
+    );
+  }
+}
 
 export default Header;

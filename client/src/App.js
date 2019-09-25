@@ -49,12 +49,12 @@ class App extends React.Component {
         <UserContext.Provider value={{ setUser, user }}>
           <div className="container-fluid">
             <Header />
-            <div className="row">
+            <div className="row body-container">
               {this.state.user ? <Sidebar /> : null}
               <div
                 className={this.state.user ? "col-9 main-content" : "col-12"}
               >
-                <ProtectedRoutes exact path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route
                   exact

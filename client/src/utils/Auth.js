@@ -10,11 +10,11 @@ function Auth() {
       .then(response => {
         const token = response.data.token;
         localStorage.setItem("token", token);
-
         cb(response.data);
       })
       .catch(err => {
         console.log(err);
+        // cb();
       });
   }
 

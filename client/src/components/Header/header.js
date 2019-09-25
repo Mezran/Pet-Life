@@ -6,7 +6,9 @@ import Auth from "../../utils/Auth";
 
 class Header extends Component {
   handleLogOut = () => {
-    Auth.logOut();
+    Auth.logOut(() => {
+      window.location.href = "/";
+    });
     // cb missing
   };
 

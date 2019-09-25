@@ -13,13 +13,12 @@ import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
 
-import petFamily from "./pages/petFam"
+import petFamily from "./pages/petFam";
 import AddDetailPage from "./pages/AddDetailPage";
 import PrescriptionPage from "./pages/Prescriptions";
 import DetailsPage from "./pages/DetailsPage";
 
 import "./global.scss";
-
 
 class App extends React.Component {
   state = {
@@ -54,12 +53,12 @@ class App extends React.Component {
         <UserContext.Provider value={{ setUser, user }}>
           <div className="container-fluid">
             <Header />
-            <div className="row">
+            <div className="row body-container">
               {this.state.user ? <Sidebar /> : null}
               <div
                 className={this.state.user ? "col-9 main-content" : "col-12"}
               >
-                <ProtectedRoutes exact path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={LoginPage} />
                 <Route
                   exact
@@ -69,10 +68,7 @@ class App extends React.Component {
                 <Route exact path="/petinfo" component={PetInfo} />
 
                 <Route exact path="/petFamily" component={petFamily} />
-              <Footer/>
-
-                <Route exact path="/visits" component={Visits} />
-
+                <Route exact path="/Visits" component={Visits} />
                 <ProtectedRoutes
                   exact
                   path="/addDetail"
@@ -117,7 +113,6 @@ class App extends React.Component {
                   )}
                 />
               </div>
-
             </div>
           </div>
         </UserContext.Provider>

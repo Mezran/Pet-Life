@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const authWare = require("../customMiddleware/authware");
-const {petsController, userController} = require('../controllers');
+const { petsController, userController } = require("../controllers");
 
 var db = require("../models");
 const Pet = require("../models/Pets");
@@ -13,27 +13,6 @@ module.exports = function(app) {
   // in out mongoDB and returns
   // json message saying user created.
   // if error, send error.
-  app.get("/api/visits", function(req, res) {
-    Pet.find({})
-      .then(function(found) {
-        res.json(found);
-      })
-      .catch(function(err) {
-        res.status(500).json(err);
-      });
-  });
-
-  app.post("/api/visits", function(req, res) {
-    console.log(req.body);
-    Pet.create(req.body)
-      .then(function(saved) {
-        res.json({ message: "saved" });
-      })
-      .catch(function(err) {
-        res.status(500).json(err);
-      });
-  });
-
   app.post("/api/signup", function(req, res) {
     console.log(req.body);
     User.create(req.body)
@@ -85,7 +64,6 @@ module.exports = function(app) {
   app.get("/api/me", authWare, function(req, res) {
     res.json({ username: req.user.username, id: req.user._id });
   });
-
   // testing protected routes. uses custom authWare middle ware to
   // check if the user is authenticated.
   app.get("/api/protected", authWare, function(req, res) {
@@ -95,16 +73,18 @@ module.exports = function(app) {
     });
   });
 
-  
-
   // Pet Sitter routes
   app.post("/api/user/:id/petSitters", function(req, res) {
     console.log(req.body);
     let id = req.params.id;
     PetSitter.create(req.body)
-    .then(function(sitter) {
-      return db.User.findByIdAndUpdate(id, { $push: { petSitters: sitter._id } }, { new: true });
-    })
+      .then(function(sitter) {
+        return db.User.findByIdAndUpdate(
+          id,
+          { $push: { petSitters: sitter._id } },
+          { new: true }
+        );
+      })
       .then(sitter => {
         res.json({
           message: "sitter created"
@@ -117,10 +97,52 @@ module.exports = function(app) {
 
   app.get("/api/user/:id/petSitters", function(req, res) {
     let id = req.params.id;
-    User.findById(id).populate("petSitters")
+    User.findById(id)
+      .populate("petSitters")
       .then(response => res.json(response))
       .catch(function(err) {
         console.log(err);
+      });
+  });
+
+  // pet Routes
+  app.post("/api/user/:id/createPet", function(req, res) {
+    let id = req.params.id;
+    console.log(req.body);
+    Pet.create(req.body)
+      .then(function(pet) {
+        return db.User.findByIdAndUpdate(
+          id,
+          { $push: { pets: pet._id } },
+          { new: true }
+        );
+      })
+      .then(() => {
+        res.json({ message: "Pet created" });
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
+  app.get("/api/visits", function(req, res) {
+    Pet.find({})
+      .then(function(found) {
+        res.json(found);
+      })
+      .catch(function(err) {
+        res.status(500).json(err);
+      });
+  });
+
+  app.post("/api/visits", function(req, res) {
+    console.log(req.body);
+    Pet.create(req.body)
+      .then(function(saved) {
+        res.json({ message: "saved" });
+      })
+      .catch(function(err) {
+        res.status(500).json(err);
       });
   });
 };

@@ -83,7 +83,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/me", authWare, function(req, res) {
-    res.json({ username: req.user.username });
+    res.json({ username: req.user.username, id: req.user._id });
   });
 
   // testing protected routes. uses custom authWare middle ware to
@@ -95,10 +95,17 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/petSitters", function(req, res) {
+  
+
+  // Pet Sitter routes
+  app.post("/api/user/:id/petSitters", function(req, res) {
     console.log(req.body);
+    let id = req.params.id;
     PetSitter.create(req.body)
-      .then(result => {
+    .then(function(sitter) {
+      return db.User.findByIdAndUpdate(id, { $push: { petSitters: sitter._id } }, { new: true });
+    })
+      .then(sitter => {
         res.json({
           message: "sitter created"
         });
@@ -108,12 +115,24 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/petSitters", function(req, res) {
-    PetSitter.find({})
-      .then(sitters => res.json(sitters))
+  app.get("/api/user/:id/petSitters", function(req, res) {
+    let id = req.params.id;
+    User.findById(id).populate("petSitters")
+      .then(response => res.json(response))
       .catch(function(err) {
         console.log(err);
       });
   });
+
+  // app.get("/userSitters", function(req, res) {
+  //   db.User.find({}).populate("petSitters").then(function(user){
+  //     res.json(user);
+  //   })
+  //   .catch(function(err){
+  //     res.json(err);
+  //   })
+  
+  // })
+
   app.post("/api/savePets", petsConroller.create);
 };

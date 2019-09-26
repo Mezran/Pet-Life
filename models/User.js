@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const Schema = mongoose.Schema;
 
 const UserSchema = new mongoose.Schema ({
   username: {
@@ -9,7 +10,13 @@ const UserSchema = new mongoose.Schema ({
     }
   },
   password: String,
-  pets: Array
+  pets: Array,
+  petSitters: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "PetSitter"
+    }
+  ]
 });
 
 UserSchema.methods.comparePassword = function(inputPass) {

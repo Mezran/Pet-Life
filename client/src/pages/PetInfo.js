@@ -1,7 +1,7 @@
 import React from "react";
-import "./petInfo.css";
 import API from "../utils/API2";
 import axios from "axios";
+import PetInfoCard from "../components/petInfoCard/petInfoCard"
 
 class PetInfo extends React.Component {
 
@@ -37,17 +37,15 @@ componentDidMount () {
       <div className="container">
         <h1>Pet Info</h1>
       </div>
-      <div className="jumbotron petInfoJumbo">
-        <div className="col text-right petInfoImage"></div>
-        <div className="col text-start">
-          <p>Name: {this.state.petName}</p>
-          <p>Nickname: {this.state.nickname}</p>
-          <p>Breed: {this.state.breed}</p>
-          <p>Birthday: {this.state.birthday}</p>
-          <p>Temperament: {this.state.temperament}</p>
-          <p>Diet: {this.state.diet}</p>
-        </div>
-      </div>
+      <PetInfoCard
+        img="https://via.placeholder.com/150"
+        name={this.state.petName}
+        breed={this.state.breed}
+        nickname={this.state.petName}
+        birthday= {this.state.birthday}
+        temperament={this.state.temperament}
+        diet={this.state.diet}
+      />
     </div>
   );
 }

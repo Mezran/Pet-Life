@@ -2,32 +2,36 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
 import SitterCard from "../components/SitterCard/sitterCard";
+import UserContext from "../context/UserContext";
 
 class PetSitter extends Component {
+  static contextType = UserContext;
+
   state = {
     petSitters: []
   };
 
   componentDidMount() {
     let currentComponent = this;
-    axios.get("/api/petSitters").then(function(res) {
+    axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function(res) {
       console.log(res.data);
       currentComponent.setState({
-        petSitters: res.data
+        petSitters: res.data.petSitters
       });
     });
   }
 
   render() {
+    const { user } = this.context;
     return (
       <div className="PetSitter">
         <div className="row">
           <div className="col-9">
-            <h2>Pet Sitters</h2>
+            <h2>Pet Sitters </h2>
           </div>
           <div className="col-3 text-right">
             <Link
-              to="/petSitter/createPetSitter"
+              to={`/user/${user.id}/petSitters/createPetSitter`}
               className="btn btn-warning btn-lg"
             >
               Add a pet sitter!

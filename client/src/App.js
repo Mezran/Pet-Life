@@ -97,12 +97,12 @@ class App extends React.Component {
                 />
                 <ProtectedRoutes
                   exact
-                  path="/petSitter"
+                  path="/user/:id/petSitters"
                   component={PetSitter}
                 />
                 <ProtectedRoutes
                   exact
-                  path="/petSitter/createPetSitter"
+                  path="/user/:id/petSitters/createPetSitter"
                   component={CreatePetSitter}
                 />
                 <ProtectedRoutes

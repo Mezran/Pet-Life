@@ -11,11 +11,11 @@ export default {
     },
 
     saveVisits: function(visitData){
-        return axios.post("/api/saveVisits", petData)
+        return axios.post("/api/saveVisits", visitData)
     },
 
     getVisits: function(visitData){
-        return axios.get("/api/getVisits", petData)
+        return axios.get("/api/getVisits", visitData)
     }
 
 

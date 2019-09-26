@@ -2,30 +2,21 @@ import React from "react";
 import API from "../utils/API2";
 import axios from "axios";
 import PetInfoCard from "../components/petInfoCard/petInfoCard";
+import UserContext from "../context/UserContext"
 
 class PetInfo extends React.Component {
+static contextType = UserContext;
+
   state = {
-    petName: "",
-    nickname: "",
-    breed: "",
-    birthday: "",
-    allergies: "",
-    temperament: "",
-    diet: "",
-    directions: "",
-    id: " "
+    pets: []
   };
 
   componentDidMount() {
-    axios.get("/api/getPets/" + this.state.id).then(data => {
+    let currentComponent = this;
+    axios.get(`/api/user/${this.context.user.id}/petFamily`).then(data => {
       console.log(data);
-      this.setState({
-        // petName: data.data.name,
-        // breed: data.data.breed,
-        // diet: data.data.diet,
-        // birthday: data.data.birthday.slice(0, -14),
-        // temperament: data.data.temperament,
-        // nickname: data.data.nicknames
+      currentComponent.setState({
+        pets: data.data.pets
       });
     });
   }
@@ -36,15 +27,20 @@ class PetInfo extends React.Component {
         <div className="container">
           <h1>Pet Info</h1>
         </div>
-        <PetInfoCard
-          img="https://via.placeholder.com/150"
-          name={this.state.petName}
-          breed={this.state.breed}
-          nickname={this.state.petName}
-          birthday={this.state.birthday}
-          temperament={this.state.temperament}
-          diet={this.state.diet}
+        {this.state.pets.map( item => (
+          <PetInfoCard
+          key={item.id}
+          img={item.image}
+          name={item.name}
+          breed={item.breed}
+          nickname={item.nicknames}
+          birthday={item.birthday}
+          temperament={item.temperament}
+          diet={item.diet}
+          directions={item.directions}
         />
+          )
+        )}
       </div>
     );
   }

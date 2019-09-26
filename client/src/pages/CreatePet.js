@@ -22,12 +22,12 @@ class CreatePet extends React.Component {
     temperament: "",
     diet: "",
     directions: "",
-    file: ""
+    image: ""
   };
 
   setFile = filePath => {
     this.setState({
-      file: filePath
+      image: filePath
     });
   };
 
@@ -42,7 +42,7 @@ class CreatePet extends React.Component {
       temperament: this.state.temperament,
       diet: this.state.diet,
       directions: this.state.directions,
-      file: this.state.file
+      image: this.state.file
     };
     console.log(petData);
     axios

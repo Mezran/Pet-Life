@@ -10,19 +10,45 @@ function Sidebar() {
         {context => (
           <ul className="nav flex-column">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/PetFamily">Pet Family</NavLink>
+              <NavLink
+                className="nav-link"
+                to={`/user/${context.user.id}/petfamily`}
+              >
+                Pet Family
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/petInfo">Pet Info</NavLink>
+              <NavLink
+                className="nav-link"
+                to={`/user/${context.user.id}/pets`}
+              >
+                Pet Info
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/prescription">Prescription</NavLink>
+              <NavLink
+                className="nav-link"
+                to={`/user/${context.user.id}/prescription`}
+              >
+                Prescription
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/visits"> Visits</NavLink>
+              <NavLink
+                className="nav-link"
+                to={`/user/${context.user.id}/visits`}
+              >
+                {" "}
+                Visits
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to={`/user/${context.user.id}/petSitters`}>Pet Sitter</NavLink>
+              <NavLink
+                className="nav-link"
+                to={`/user/${context.user.id}/petSitters`}
+              >
+                Pet Sitter
+              </NavLink>
             </li>
           </ul>
         )}

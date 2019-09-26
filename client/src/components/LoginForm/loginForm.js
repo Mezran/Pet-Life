@@ -30,6 +30,7 @@ class LoginForm extends Component {
           console.log(response);
           this.context.setUser(response);
           this.props.history.push("/");
+          // this.props.history.push(`/user/${response.data.id}/petfamily`);
         })
         .catch(err => {
           this.setState({ err: true });

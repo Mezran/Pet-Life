@@ -1,8 +1,8 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const authWare = require("../customMiddleware/authware");
-const petsConroller = require("../controllers/petsConroller");
-// const router = require("express").Router();
+const {petsController, userController} = require('../controllers');
+
 var db = require("../models");
 const Pet = require("../models/Pets");
 const PetSitter = require("../models/PetSitterMod");
@@ -123,8 +123,4 @@ module.exports = function(app) {
         console.log(err);
       });
   });
-
- 
-
-  app.post("/api/savePets", petsConroller.create);
 };

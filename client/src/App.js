@@ -13,7 +13,7 @@ import Home from "./pages/Home";
 import Auth from "./utils/Auth";
 import PetInfo from "./pages/PetInfo";
 
-import petFamily from "./pages/petFam";
+import CreatePet from "./pages/CreatePet";
 import AddDetailPage from "./pages/AddDetailPage";
 import PetSitter from "./pages/PetSitter";
 import CreatePetSitter from "./pages/CreatePetSitter";
@@ -21,8 +21,6 @@ import PrescriptionPage from "./pages/Prescriptions";
 import DetailsPage from "./pages/DetailsPage";
 import PetFamily from "./pages/PetFamily";
 import ComingSoon from "./pages/ComingSoon";
-
-
 
 import "./global.scss";
 
@@ -76,7 +74,11 @@ class App extends React.Component {
                 <Route exact path="/visits" component={Visits} />
                 <Route exact path="/petfamily" component={PetFamily} />
                 <Route exact path="/comingsoon" component={ComingSoon} />
-
+                <ProtectedRoutes
+                  exact
+                  path="/createPet"
+                  component={CreatePet}
+                />
                 <ProtectedRoutes
                   exact
                   path="/addDetail"

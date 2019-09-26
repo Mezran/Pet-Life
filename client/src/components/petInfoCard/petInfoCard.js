@@ -14,16 +14,20 @@ function PetInfoCard(props) {
             {props.name}
           </p>
           <p>
-            <strong>Nicknames: </strong>
-            {props.nicknames}
+            <strong>Nickname: </strong>
+            {props.nickname}
+          </p>
+          <p>
+            <strong>Breed: </strong>
+            {props.breed}
           </p>
           <p>
             <strong>Birthday: </strong>
             {props.birthday}
           </p>
           <p>
-            <strong>Prescriptions: </strong>
-            {props.prescriptions}
+            <strong>Temperament: </strong>
+            {props.temperament}
           </p>
           <p>
             <strong>Diet: </strong>

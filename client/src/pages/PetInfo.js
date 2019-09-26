@@ -1,7 +1,37 @@
 import React from "react";
-import PetInfoCard from "../components/petInfoCard/petInfoCard";
+import API from "../utils/API2";
+import axios from "axios";
+import PetInfoCard from "../components/petInfoCard/petInfoCard"
 
-function PetInfo() {
+class PetInfo extends React.Component {
+
+  state = {
+    petName: "",
+    nickname: "",
+    breed: "",
+    birthday: "",
+    allergies: "", 
+    temperament: "", 
+    diet: "",
+    directions: "",
+    id: "5d8c2b38e773341971f43e8c"
+
+};
+
+componentDidMount () {
+  axios.get("/api/getPets/" + this.state.id).then( data => {
+    console.log(data)
+    this.setState({ 
+      petName: data.data.name,
+      breed: data.data.breed,
+      diet: data.data.diet,
+      birthday: data.data.birthday.slice(0, -14),
+      temperament: data.data.temperament,
+      nickname: data.data.nicknames })
+  })
+}
+
+  render() {
   return (
     <div className="petInfoCont">
       <div className="container">
@@ -9,14 +39,16 @@ function PetInfo() {
       </div>
       <PetInfoCard
         img="https://via.placeholder.com/150"
-        name="tintin"
-        nicknames="tin"
-        birthday="july"
-        prescriptions="none"
-        diet="veggie"
+        name={this.state.petName}
+        breed={this.state.breed}
+        nickname={this.state.petName}
+        birthday= {this.state.birthday}
+        temperament={this.state.temperament}
+        diet={this.state.diet}
       />
     </div>
   );
+}
 }
 
 export default PetInfo;

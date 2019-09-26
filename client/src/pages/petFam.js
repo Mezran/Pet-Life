@@ -1,5 +1,9 @@
 import React from "react";
 import API from "../utils/API2";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import FileUpload from "../upload/fileUpload";
+
 
 function randomComponent (props) {
     return <h1></h1>
@@ -8,30 +12,39 @@ function randomComponent (props) {
 class petFamily extends React.Component {
   state = {
       petName: "",
+      nicknames: "",
       breed: "",
-      birthday: "",
-      // prescriptions: [],
+      birthday: new Date(),
       allergies: "", 
       temperament: "", 
       diet: "",
-      directions: ""
+      directions: "",
+      file: ''
 
   };
 
-  submitData = data => {
+  setFile = filePath => {
+    this.setState({
+      file: filePath
+    });
+  };
+  
+  submitData = () => {
     const petData = {
         name: this.state.petName,
+        nicknames: this.state.nicknames,
         breed: this.state.breed, 
         birthday: this.state.birthday, 
-        prescriptions: this.state.prescriptions,
         allergies: this.state.allergies, 
         temperament: this.state.temperament, 
         diet: this.state.diet, 
-        directions: this.state.directions
+        directions: this.state.directions,
+        file: this.state.file
     }
-    API.savePet(petData).then( 
-        // return petID from mongo and apply to User model.
-        
+    console.log(petData)
+    API.savePet(petData).then( data => {
+      console.log(data)
+    }   
     )
 
 
@@ -44,9 +57,19 @@ class petFamily extends React.Component {
       this.setState({ [name]: value })
   }
 
+  handleDateChange = date => {
+    this.setState({
+      birthday: date
+    })
+    console.log(this.state.birthday)
+  }
+
+
+
   render() {
     return (
       <div>
+        <form>
         <div className="form-group">
           <label >Pet Name</label>
           <input
@@ -56,6 +79,21 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.petName}
           />
+         </div> 
+         <div className="form-group">
+          <label >Nicknames</label>
+          <input
+            name="nicknames"
+            type="text"
+            className="form-control"
+            onChange={this.handleInputChange}
+            value={this.state.nicknames}
+          />
+        </div> 
+        <div className="form-group">
+          <FileUpload onComplete={this.setFile} />
+        </div>
+         <div className="form-group">
           <label >Breed</label>
           <input
             name="breed"
@@ -64,23 +102,18 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.breed}
           />
+          </div> 
+         <div className="form-group">
           <label >Birthday</label>
-          <input
-            name="birthday"
-            type="text"
+          <DatePicker
+            name="bday"
             className="form-control"
-            onChange={this.handleInputChange}
-            value={this.state.birthday}
+            onSelect={this.handleDateChange}
+            selected={this.state.birthday}
           />
-          <label >prescriptions</label>
-          {/* <input
-            name="prescriptions"
-            type="text"
-            className="form-control"
-            onChange={this.handleInputChange}
-            value={this.state.prescriptions}
-          /> */}
-          <label >allergies</label>
+          </div> 
+         <div className="form-group">
+          <label >Allergies</label>
           <input
             name="allergies"
             type="text"
@@ -88,7 +121,9 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.allergies}
           />
-          <label >temperament</label>
+          </div> 
+         <div className="form-group">
+          <label >Temperament</label>
           <input
             name="temperament"
             type="text"
@@ -96,7 +131,9 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.temperament}
           />
-          <label >diet</label>
+          </div> 
+         <div className="form-group">
+          <label >Diet</label>
           <input
             name="diet"
             type="text"
@@ -104,7 +141,9 @@ class petFamily extends React.Component {
             onChange={this.handleInputChange}
             value={this.state.diet}
           />
-          <label >directions</label>
+          </div> 
+         <div className="form-group">
+          <label >Directions</label>
           <textarea
             name="directions"
             type="text"
@@ -116,6 +155,7 @@ class petFamily extends React.Component {
         <button onClick={this.submitData} type="submit">
           Submit Pet
         </button>
+        </form>
       </div>
     );
   }

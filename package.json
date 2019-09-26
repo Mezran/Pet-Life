@@ -29,6 +29,7 @@
     "express-form-data": "^2.0.10",
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.0",
-    "mongoose": "^5.4.19"
+    "mongoose": "^5.4.19",
+    "react-datepicker": "^2.9.6"
   }
 }

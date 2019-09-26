@@ -40,8 +40,10 @@ const petSchema = new mongoose.Schema({
     type: String, 
     required: true,
     trim: true },
-  // petId: { type: Integer, 
-  //   required: true },
+  nicknames: {
+    type: String,
+    trim: true
+  },
   breed: { 
     type: String,
     trim: true },

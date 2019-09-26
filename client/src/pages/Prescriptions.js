@@ -26,9 +26,10 @@ class PrescriptionsPage extends Component {
   }
 
   loadPrescriptions = () => {
+    let currentComponent = this;
     axios.get("/api/...").then(function(res) {
-      this.setState({
-        prescriptions: "res.data.docs"
+      currentComponent.setState({
+        prescriptions: res.data
       });
     });
   };
@@ -68,7 +69,7 @@ class PrescriptionsPage extends Component {
         </div>
       </div>
     );
-  } 
+  }
 }
 
 export default PrescriptionsPage;

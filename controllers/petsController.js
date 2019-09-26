@@ -9,15 +9,22 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     findById: function (req, res) {
+        console.log("Find id")
+        const id = req.params.id
+        console.log(req.params.id) 
         db.Pet
-            .findById(req.params.id)
+            .findById(id)
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err))
     },
     create: function (req, res) {
+        console.log(req.body)
         db.Pet
             .create(req.body)
-            .then(dbModel => res.json(dbModel))
+            .then(dbModel => {
+                console.log("data created?")
+                res.json(dbModel)
+            })
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {

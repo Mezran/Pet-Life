@@ -1,3 +1,6 @@
 import { createContext } from "react";
 
-export default createContext();
+const UserContext = createContext();
+
+export const { Provider, Consumer } = UserContext;
+export default UserContext;

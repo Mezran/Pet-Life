@@ -6,7 +6,8 @@ const prescriptionsSchema = new mongoose.Schema({
     trim: true
   },
   image: {
-    data: Buffer, contentType: String
+    data: Buffer,
+    contentType: String
   },
   expDate: {
     type: Date
@@ -15,7 +16,7 @@ const prescriptionsSchema = new mongoose.Schema({
     type: String,
     trim: true
   }
-})
+});
 
 const doctorVisitSchema = new mongoose.Schema({
   date: {
@@ -33,29 +34,33 @@ const doctorVisitSchema = new mongoose.Schema({
     url: String,
     comments: String
   }
-})
+});
 
 const petSchema = new mongoose.Schema({
-  name: { 
-    type: String, 
-    required: true,
-    trim: true },
-  // petId: { type: Integer, 
-  //   required: true },
-  breed: { 
+  name: {
     type: String,
-    trim: true },
-  birthday: { 
-    type: Date
-    },
-  prescriptions: [prescriptionsSchema],
-  allergies: { type: Array },
-  temperament: { 
+    required: true,
+    trim: true
+  },
+  nicknames: {
     type: String,
     trim: true
-   },
-  diet: { 
+  },
+  breed: {
     type: String,
+    trim: true
+  },
+  birthday: {
+    type: Date
+  },
+  prescriptions: [prescriptionsSchema],
+  allergies: { type: Array },
+  temperament: {
+    type: String,
+    trim: true
+  },
+  diet: {
+    type: String
   },
   directions: { type: String },
   docVisits: [doctorVisitSchema],
@@ -67,4 +72,3 @@ const petSchema = new mongoose.Schema({
 const Pet = mongoose.model("Pets", petSchema);
 
 module.exports = Pet;
- 

@@ -8,7 +8,8 @@ class LoginForm extends Component {
   static contextType = UserContext;
   state = {
     username: "",
-    password: ""
+    password: "",
+    err: false
   };
 
   handleInputChange = event => {
@@ -24,18 +25,31 @@ class LoginForm extends Component {
     const username = this.state.username;
     const password = this.state.password;
     if (username && password) {
-      Auth.logIn(username, password, response => {
-        this.context.setUser(response);
-        this.props.history.push("/");
-      });
+      Auth.logIn(username, password)
+        .then(response => {
+          console.log(response);
+          this.context.setUser(response);
+          this.props.history.push("/");
+          // this.props.history.push(`/user/${response.data.id}/petfamily`);
+        })
+        .catch(err => {
+          this.setState({ err: true });
+        });
     } else {
-      console.log("Something is incorrect.");
+      this.setState({
+        err: true
+      });
     }
   };
 
   render() {
     return (
       <div className="LoginForm">
+        {this.state.err ? (
+          <div class="alert alert-danger" role="alert">
+            Username and or password is incorrect
+          </div>
+        ) : null}
         <form>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Username</label>

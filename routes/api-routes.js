@@ -124,15 +124,7 @@ module.exports = function(app) {
       });
   });
 
-  // app.get("/userSitters", function(req, res) {
-  //   db.User.find({}).populate("petSitters").then(function(user){
-  //     res.json(user);
-  //   })
-  //   .catch(function(err){
-  //     res.json(err);
-  //   })
-  
-  // })
+ 
 
   app.post("/api/savePets", petsConroller.create);
 };

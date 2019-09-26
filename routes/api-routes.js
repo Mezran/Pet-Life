@@ -61,6 +61,16 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/user/:id/petFamily", function(req, res) {
+    let id = req.params.id;
+    User.findById(id)
+      .populate("pets")
+      .then(response => res.json(response))
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
   app.get("/api/me", authWare, function(req, res) {
     res.json({ username: req.user.username, id: req.user._id });
   });

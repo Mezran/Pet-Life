@@ -69,14 +69,40 @@ class App extends React.Component {
                   path="/createAccount"
                   component={CreateAccountPage}
                 />
-                <Route exact path="/petinfo" component={PetInfo} />
-
-                <Route exact path="/visits" component={Visits} />
-                <Route exact path="/petfamily" component={PetFamily} />
-                <Route exact path="/comingsoon" component={ComingSoon} />
                 <ProtectedRoutes
                   exact
-                  path="/createPet"
+                  path="/user/:id/visits"
+                  component={Visits}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/user/:id/pets/:petId/visits/addDetail"
+                  render={props => (
+                    <AddDetailPage
+                      {...props}
+                      pageTitle="Visits"
+                      postTo="/api/visits"
+                    />
+                  )}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/user/:id/visits/viewDetail"
+                  component={DetailsPage}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/user/:id/petfamily"
+                  component={PetFamily}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/user/:id/pets"
+                  component={PetInfo}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/user/:id/pets/createPet"
                   component={CreatePet}
                 />
                 <ProtectedRoutes
@@ -90,29 +116,15 @@ class App extends React.Component {
                     />
                   )}
                 />
+
                 <ProtectedRoutes
                   exact
-                  path="/visits/viewDetail"
-                  component={DetailsPage}
-                />
-                <ProtectedRoutes
-                  exact
-                  path="/user/:id/petSitters"
-                  component={PetSitter}
-                />
-                <ProtectedRoutes
-                  exact
-                  path="/user/:id/petSitters/createPetSitter"
-                  component={CreatePetSitter}
-                />
-                <ProtectedRoutes
-                  exact
-                  path="/prescription"
+                  path="/user/:id/prescription"
                   component={PrescriptionPage}
                 />
                 <ProtectedRoutes
                   exact
-                  path="/prescription/addDetail"
+                  path="/user/:id/pets/:petId/prescription/addDetail"
                   render={props => (
                     <AddDetailPage
                       {...props}
@@ -123,14 +135,13 @@ class App extends React.Component {
                 />
                 <ProtectedRoutes
                   exact
-                  path="/visits/addDetail"
-                  render={props => (
-                    <AddDetailPage
-                      {...props}
-                      pageTitle="Visits"
-                      postTo="/api/visits"
-                    />
-                  )}
+                  path="/user/:id/petSitters"
+                  component={PetSitter}
+                />
+                <ProtectedRoutes
+                  exact
+                  path="/user/:id/petSitters/createPetSitter"
+                  component={CreatePetSitter}
                 />
               </div>
             </div>

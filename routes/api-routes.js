@@ -95,7 +95,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/petSitters", function (req, res) {
+  app.post("/api/petSitters", function(req, res) {
     console.log(req.body);
     PetSitter.create(req.body)
       .then(result => {
@@ -103,20 +103,17 @@ module.exports = function(app) {
           message: "sitter created"
         });
       })
-      .catch(function (err) {
-        console.log(err)
+      .catch(function(err) {
+        console.log(err);
       });
-  })
+  });
 
-  app.get("/api/petSitters", function (res) {
+  app.get("/api/petSitters", function(req, res) {
     PetSitter.find({})
-    .then(sitters => res.json(sitters)
-    )
-    .catch(function (err) {
-      console.log(err);
-    });
-  })
+      .then(sitters => res.json(sitters))
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
   app.post("/api/savePets", petsConroller.create);
 };
-
-

@@ -6,10 +6,10 @@ function SitterCard(props) {
     <div className="sitterCard">
       <div className="card">
         <div className="row ">
-          <div className="col-md-4">
+          <div className="col-md-3">
             <img src={props.file}></img>
           </div>
-          <div className="col-md-8">
+          <div className="col-md-9">
             <div className="card-body">
               <h4 className="card-name">{props.name}</h4>
               <h5 className="card-number">{props.number}</h5>

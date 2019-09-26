@@ -7,14 +7,15 @@ class PetSitter extends Component {
   state = {
     petSitters: []
   };
+
   componentDidMount() {
+    let currentComponent = this;
     axios.get("/api/petSitters").then(function(res) {
       console.log(res.data);
-      this.setState({
+      currentComponent.setState({
         petSitters: res.data
       });
     });
-    console.log("Petsitter page");
   }
 
   render() {
@@ -42,7 +43,8 @@ class PetSitter extends Component {
             ) : null}
             {this.state.petSitters.map(item => (
               <SitterCard
-                img={item.img}
+                key={item.id}
+                file={item.file}
                 name={item.name}
                 number={item.number}
                 address={item.address}

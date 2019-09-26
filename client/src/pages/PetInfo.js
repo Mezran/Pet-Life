@@ -25,7 +25,7 @@ componentDidMount () {
       petName: data.data.name,
       breed: data.data.breed,
       diet: data.data.diet,
-      birthday: data.data.birthday,
+      birthday: data.data.birthday.slice(0, -14),
       temperament: data.data.temperament,
       nicknames: data.data.nicknames })
   })

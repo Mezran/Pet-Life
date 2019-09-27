@@ -29,11 +29,12 @@ class CreatePetSitter extends Component {
   };
 
  reDirect (petSitter) {
+   let petSitterUrl = `/user/${this.context.user.id}/petSitters`
     axios.post(`/api/user/${this.context.user.id}/petSitters`, petSitter).then(function() {
-        this.props.history.push(`/user/${this.context.user.id}/petSitters`);
+        window.location=petSitterUrl;
       });
   };
-
+  
   onSubmit = e => {
     e.preventDefault();
     const petSitter = {

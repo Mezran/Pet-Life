@@ -117,14 +117,14 @@ module.exports = function(app) {
 
   app.delete("/api/user/:id/petSitters", function (req, res){
     let id = req.params.id;
-    PetSitter.remove(
+    PetSitter.deleteOne(
       {
-        _id: mongojs.ObjectID(id)
+        _id: id
       },
       function(err, removed) {
-        if (error) {
-          console.log(error);
-          res.send(error);
+        if (err) {
+          console.log(err);
+          res.send(err);
         }
         else {
           console.log(removed);

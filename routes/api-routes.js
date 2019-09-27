@@ -14,7 +14,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 })
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.post("/api/image-upload", (req, res) => {
 
     const values = Object.values(req.files)
@@ -133,13 +133,13 @@ module.exports = function(app) {
       });
   });
 
-  app.delete("/api/user/:id/petSitters", function (req, res){
+  app.delete("/api/user/:id/petSitters", function (req, res) {
     let id = req.params.id;
     PetSitter.deleteOne(
       {
         _id: id
       },
-      function(err, removed) {
+      function (err, removed) {
         if (err) {
           console.log(err);
           res.send(err);
@@ -154,7 +154,7 @@ module.exports = function(app) {
 
 
   // Pet Routes
-  app.post("/api/user/:id/createPet", function(req, res) {
+  app.post("/api/user/:id/createPet", function (req, res) {
     let id = req.params.id;
     console.log(req.body);
     Pet.create(req.body)
@@ -175,14 +175,19 @@ module.exports = function(app) {
 
 
   // Visits routes
-  app.post("/api/user/:id/visits", function (req, res) {
+  app.post("/api/pets/:id/visits", function (req, res) {
     console.log(req.body);
-    Pet.create(req.body)
-      .then(function (saved) {
-        res.json({ message: "saved" });
+    const id = req.params.id;
+    Pet.findByIdAndUpdate(
+      id,
+      { $push: { docVisits: req.body } },
+      { new: true }
+    )
+      .then(function () {
+        res.json({ message: "Visit Saved" });
       })
       .catch(function (err) {
-        res.status(500).json(err);
+        console.log(err);
       });
   });
 
@@ -197,28 +202,28 @@ module.exports = function(app) {
       });
   });
 
-  app.post("/api/pets/:id/prescription", function(req, res) {
+  app.post("/api/pets/:id/prescription", function (req, res) {
     const id = req.params.id;
     Pet.findByIdAndUpdate(
       id,
       { $push: { prescriptions: req.body } },
       { new: true }
     )
-      .then(function() {
+      .then(function () {
         res.json({ message: "Prescription Saved" });
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log(err);
       });
   });
 
-  app.post("/api/pets/:id/visit ", function(req, res) {
+  app.post("/api/pets/:id/visit ", function (req, res) {
     const id = req.params.id;
     Pet.findByIdAndUpdate(id, { $push: { visits: req.body } }, { new: true })
-      .then(function() {
+      .then(function () {
         res.json({ message: "Visit Saved" });
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log(err);
       });
   });

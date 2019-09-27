@@ -11,7 +11,7 @@ function VisitTable(props) {
                 <td>{props.date}</td>
                 <td>{props.doctorsName}</td>
                 <td>{props.hospital}</td>
-                <td> <Link to="/visits/viewDetail" >See Details</Link></td>
+                {/* <td> <Link to="/visits/viewDetail" >See Details</Link></td> */}
             </tr>
 
 

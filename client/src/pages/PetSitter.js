@@ -17,30 +17,31 @@ class PetSitter extends Component {
     if(this.state.mounted == false){
       if(this.state.refreshed == false){
         console.log("updateRan")
-        let currentComponent = this;
-        axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function(res) {
+        axios.get(`/api/user/${this.context.user.id}/petSitters`).then(res => {
           console.log(res.data);
-          currentComponent.setState({
+          this.setState({
             petSitters: res.data.petSitters,
             refreshed: true
           });
         });
-
       } else {
         this.setState ({
           mounted: true
         })
       }
     }
-
-
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     let currentComponent = this;
     axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function (res) {
+=======
+    if (!this.context.user) return;
+    axios.get(`/api/user/${this.context.user.id}/petSitters`).then(res => {
+>>>>>>> 95876d2eea1799958f58754aebffa9465da67122
       console.log(res.data);
-      currentComponent.setState({
+      this.setState({
         petSitters: res.data.petSitters,
         mounted: true
       });

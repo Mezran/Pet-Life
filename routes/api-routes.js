@@ -1,11 +1,18 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary");
 const authWare = require("../customMiddleware/authware");
 const { petsController, userController } = require("../controllers");
 
 var db = require("../models");
 const Pet = require("../models/Pets");
 const PetSitter = require("../models/PetSitterMod");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+})
 
 module.exports = function(app) {
   app.post("/api/image-upload", (req, res) => {

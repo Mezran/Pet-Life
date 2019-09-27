@@ -8,16 +8,8 @@ const PORT = process.env.PORT || 3001;
 
 // for file upload component
 const cors = require("cors");
-const cloudinary = require("cloudinary");
 const formData = require("express-form-data");
 const { CLIENT_ORIGIN } = require("./config");
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET
-})
-
 
 app.use(cors({
   origin: CLIENT_ORIGIN

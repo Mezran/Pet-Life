@@ -3,8 +3,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PastVisits from "../PastVisits";
+import UserContext from "../../context/UserContext";
 
 class VisitsPage extends Component {
+    static contextType = UserContext
+
     state = {
         date: "",
         doctorsName: "",
@@ -18,7 +21,7 @@ class VisitsPage extends Component {
         });
     };
     saveVisit = visit => {
-        axios.post("/api/visits", visit).then(console.log("set state as saved"));
+        axios.post(`/api/user/${this.context.user.id}/visits`, visit).then(console.log("set state as saved"));
     };
 
     render() {
@@ -28,7 +31,7 @@ class VisitsPage extends Component {
                     <PastVisits />
 
                     <h2>Add Visits</h2>
-                    <table class="table">
+                    <table className="table">
                         <tbody>
                             <tr>
                                 <td>

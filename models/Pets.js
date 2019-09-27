@@ -1,18 +1,14 @@
 const mongoose = require("mongoose");
 
 const prescriptionsSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     trim: true
   },
-  image: {
-    data: Buffer,
-    contentType: String
+  file: {
+    type: String
   },
-  expDate: {
-    type: Date
-  },
-  directions: {
+  comment: {
     type: String,
     trim: true
   }

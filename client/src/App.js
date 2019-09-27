@@ -52,23 +52,19 @@ class App extends React.Component {
   render() {
     const { user } = this.state;
     const setUser = this.setUser;
-    const userHome = `/user/${this.state.user.id}/petfamily`;
+    const userHome = `/user/${user.id}/petfamily`;
     return (
       <Router>
         <UserContext.Provider value={{ setUser, user }}>
           <div className="container-fluid">
             <Header />
             <div className="row body-container">
-              {this.state.user ? <Sidebar /> : null}
-              <div
-                className={this.state.user ? "col-9 main-content" : "col-12"}
-              >
+              {user ? <Sidebar /> : null}
+              <div className={user ? "col-9 main-content" : "col-12"}>
                 <Route
                   exact
                   path="/"
-                  render={() =>
-                    this.state.user ? <Redirect to={userHome} /> : <Home />
-                  }
+                  render={() => (user ? <Redirect to={userHome} /> : <Home />)}
                 />
                 <Route exact path="/login" component={LoginPage} />
                 <Route
@@ -117,15 +113,12 @@ class App extends React.Component {
                   path="/user/:id/pets/createPet"
                   component={CreatePet}
                 />
+
                 <ProtectedRoutes
                   exact
-                  path="/addDetail"
+                  path={`${userHome}/visit/addDetail`}
                   render={props => (
-                    <AddDetailPage
-                      {...props}
-                      pageTitle="Document"
-                      postTo="/api/test"
-                    />
+                    <AddDetailPage {...props} pageTitle="document" />
                   )}
                 />
 
@@ -136,13 +129,9 @@ class App extends React.Component {
                 />
                 <ProtectedRoutes
                   exact
-                  path="/user/:id/pets/:petId/prescription/addDetail"
+                  path={`/user/${user.id}/prescription/addDetail/:petId`}
                   render={props => (
-                    <AddDetailPage
-                      {...props}
-                      pageTitle="Presciption"
-                      postTo="/api/prescription"
-                    />
+                    <AddDetailPage {...props} pageTitle="prescription" />
                   )}
                 />
                 <ProtectedRoutes

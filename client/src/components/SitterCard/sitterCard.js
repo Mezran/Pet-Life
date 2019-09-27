@@ -9,7 +9,7 @@ function SitterCard(props) {
         <div className="row ">
           {props.file ? (
             <div className="col-md-3 text-center">
-              <img src={props.file}></img>
+              <img src={props.file} style={{height: 250, width: 250}}></img>
             </div>
           ) : null}
           <div className={props.file ? "col-md-7" : "col-10"}>

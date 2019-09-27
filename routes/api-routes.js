@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary");
 const authWare = require("../customMiddleware/authware");
 const { petsController, userController } = require("../controllers");
 
@@ -7,7 +8,24 @@ var db = require("../models");
 const Pet = require("../models/Pets");
 const PetSitter = require("../models/PetSitterMod");
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+})
+
 module.exports = function(app) {
+  app.post("/api/image-upload", (req, res) => {
+
+    const values = Object.values(req.files)
+    const promises = values.map(image => cloudinary.uploader.upload(image.path))
+
+    Promise
+      .all(promises)
+      .then(results => res.json(results))
+      .catch((err) => res.status(400).json(err))
+  });
+
   // post requests to /api/signup;
   // created a user based off of the User model
   // in out mongoDB and returns

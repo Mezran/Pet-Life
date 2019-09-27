@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import FileUpload from "../../upload/fileUpload";
+import UserContext from "../../context/UserContext";
 
 class AddDetailForm extends Component {
+  static contextType = UserContext;
   state = {
     title: "",
     file: "",
@@ -25,14 +27,17 @@ class AddDetailForm extends Component {
   handleSubmitEvent = event => {
     event.preventDefault();
     console.log(this.props.postTo);
+    const newPrescription = {
+      title: this.state.title,
+      file: this.state.file,
+      comment: this.state.comment
+    };
+    console.log(newPrescription);
     axios
-      .post(this.props.postTo, {
-        title: this.state.title,
-        file: this.state.file,
-        comment: this.state.comment
-      })
+      .post(this.props.postTo, newPrescription)
       .then(response => {
         console.log(response);
+        window.location = `/user/${this.context.user.id}/prescription`;
       })
       .catch(err => {
         console.log(err);

@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+const cloudinary = require("cloudinary");
 const authWare = require("../customMiddleware/authware");
 const { petsController, userController } = require("../controllers");
 
@@ -7,7 +8,24 @@ var db = require("../models");
 const Pet = require("../models/Pets");
 const PetSitter = require("../models/PetSitterMod");
 
-module.exports = function (app) {
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+})
+
+module.exports = function(app) {
+  app.post("/api/image-upload", (req, res) => {
+
+    const values = Object.values(req.files)
+    const promises = values.map(image => cloudinary.uploader.upload(image.path))
+
+    Promise
+      .all(promises)
+      .then(results => res.json(results))
+      .catch((err) => res.status(400).json(err))
+  });
+
   // post requests to /api/signup;
   // created a user based off of the User model
   // in out mongoDB and returns
@@ -115,8 +133,28 @@ module.exports = function (app) {
       });
   });
 
-  // pet Routes
-  app.post("/api/user/:id/createPet", function (req, res) {
+  app.delete("/api/user/:id/petSitters", function (req, res){
+    let id = req.params.id;
+    PetSitter.deleteOne(
+      {
+        _id: id
+      },
+      function(err, removed) {
+        if (err) {
+          console.log(err);
+          res.send(err);
+        }
+        else {
+          console.log(removed);
+          res.send(removed);
+        }
+      }
+    )
+  })
+
+
+  // Pet Routes
+  app.post("/api/user/:id/createPet", function(req, res) {
     let id = req.params.id;
     console.log(req.body);
     Pet.create(req.body)
@@ -156,6 +194,32 @@ module.exports = function (app) {
       })
       .catch(function (err) {
         res.status(500).json(err);
+      });
+  });
+
+  app.post("/api/pets/:id/prescription", function(req, res) {
+    const id = req.params.id;
+    Pet.findByIdAndUpdate(
+      id,
+      { $push: { prescriptions: req.body } },
+      { new: true }
+    )
+      .then(function() {
+        res.json({ message: "Prescription Saved" });
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
+  app.post("/api/pets/:id/visit ", function(req, res) {
+    const id = req.params.id;
+    Pet.findByIdAndUpdate(id, { $push: { visits: req.body } }, { new: true })
+      .then(function() {
+        res.json({ message: "Visit Saved" });
+      })
+      .catch(function(err) {
+        console.log(err);
       });
   });
 };

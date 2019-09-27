@@ -10,6 +10,7 @@ class PrescriptionsPage extends Component {
     pets: [],
     mounted: false,
     refreshed: false,
+    activePet: {},
     activePetPrescription: []
   };
 
@@ -19,6 +20,10 @@ class PrescriptionsPage extends Component {
       console.log(response);
       currentComponent.setState({
         pets: response.data.pets,
+        activePet: {
+          name: response.data.pets[0].name,
+          id: response.data.pets[0]._id
+        },
         activePetPrescription: response.data.pets[0].prescriptions,
         mounted: true
       });
@@ -35,6 +40,10 @@ class PrescriptionsPage extends Component {
             console.log(res.data);
             currentComponent.setState({
               pets: res.data.pets,
+              activePet: {
+                name: res.data.pets[0].name,
+                id: res.data.pets[0]._id
+              },
               activePetPrescription: res.data.pets[0].prescriptions,
               refreshed: true
             });
@@ -49,15 +58,21 @@ class PrescriptionsPage extends Component {
   activePet = e => {
     let id = e.target.id;
     console.log(id);
-    const activePet = this.state.pets.find(pet => pet._id === id);
-    console.log(activePet);
+    const newActivePet = this.state.pets.find(pet => pet._id === id);
+    console.log(newActivePet);
     this.setState({
-      activePetPrescription: activePet.prescriptions
+      activePetPrescription: newActivePet.prescriptions,
+      activePet: {
+        name: newActivePet.name,
+        id: newActivePet._id
+      }
     });
   };
   render() {
     // const prescriptions = this.state.activePet.prescriptions;
     // console.log(prescriptions);
+
+    const { id: userId } = this.context.user || {};
 
     return (
       <div className="Prescriptions">
@@ -80,24 +95,26 @@ class PrescriptionsPage extends Component {
           ))}
         </ul>
         <div className="row">
+          <div className="col-12 text-right mt-3">
+            <Link
+              to={`/user/${userId}/prescription/addDetail/${this.state.activePet.id}`}
+              className="btn btn-primary"
+            >
+              Add new prescription for {this.state.activePet.name}!
+            </Link>
+          </div>
           <div className="col-12">
             {this.state.activePetPrescription.length < 1 ? (
               <>
                 <div className="alert alert-warning mt-4" role="alert">
                   This pet doesn't have prescriptions
                 </div>
-                <Link
-                  to="/user/prescription/addDetail"
-                  className="btn btn-primary btn-lg"
-                >
-                  Add New Prescription
-                </Link>
               </>
             ) : (
               this.state.activePetPrescription.map(item => (
                 <PrescriptionFile
                   key={item.id}
-                  url={item.url}
+                  file={item.file}
                   title={item.title}
                   comment={item.comment}
                 />

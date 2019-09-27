@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import Images from "./Images";
-import { API_URL } from "../utils/API";
 import Loading from "./Loading";
 import Button from "./Button";
 import "./fileUpload.scss";
@@ -23,7 +22,7 @@ class FileUpload extends Component {
       formData.append(i, file);
     });
 
-    fetch(`${API_URL}/image-upload`, {
+    fetch("/api/image-upload", {
       method: "POST",
       body: formData
     })

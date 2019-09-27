@@ -38,7 +38,7 @@ class PetSitter extends Component {
 
   componentDidMount() {
     let currentComponent = this;
-    axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function(res) {
+    axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function (res) {
       console.log(res.data);
       currentComponent.setState({
         petSitters: res.data.petSitters,
@@ -46,6 +46,19 @@ class PetSitter extends Component {
       });
     });
   }
+
+  deleteButton = (petSitterId) => {
+    axios.delete(`/api/user/${petSitterId}/petSitters`).then(function (res) {
+      console.log("sitter deleted")
+      });
+      let currentComponent = this;
+      axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function (res) {
+        console.log(res.data);
+        currentComponent.setState({
+          petSitters: res.data.petSitters
+        });
+      });
+ };
 
   render() {
     const { user } = this.context;
@@ -73,12 +86,14 @@ class PetSitter extends Component {
             ) : null}
             {this.state.petSitters.map(item => (
               <SitterCard
-                key={item.id}
+                key={item._id}
+                id={item._id}
                 file={item.file}
                 name={item.name}
                 number={item.number}
                 address={item.address}
                 other={item.other}
+                deleteSitter={this.deleteButton}
               />
             ))}
           </div>

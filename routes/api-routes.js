@@ -115,7 +115,27 @@ module.exports = function(app) {
       });
   });
 
-  // pet Routes
+  app.delete("/api/user/:id/petSitters", function (req, res){
+    let id = req.params.id;
+    PetSitter.remove(
+      {
+        _id: mongojs.ObjectID(id)
+      },
+      function(err, removed) {
+        if (error) {
+          console.log(error);
+          res.send(error);
+        }
+        else {
+          console.log(removed);
+          res.send(removed);
+        }
+      }
+    )
+  })
+
+
+  // Pet Routes
   app.post("/api/user/:id/createPet", function(req, res) {
     let id = req.params.id;
     console.log(req.body);

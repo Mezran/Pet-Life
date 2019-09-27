@@ -155,4 +155,30 @@ module.exports = function(app) {
         res.status(500).json(err);
       });
   });
+
+  app.post("/api/pets/:id/prescription", function(req, res) {
+    const id = req.params.id;
+    Pet.findByIdAndUpdate(
+      id,
+      { $push: { prescriptions: req.body } },
+      { new: true }
+    )
+      .then(function() {
+        res.json({ message: "Prescription Saved" });
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
+  app.post("/api/pets/:id/visit ", function(req, res) {
+    const id = req.params.id;
+    Pet.findByIdAndUpdate(id, { $push: { visits: req.body } }, { new: true })
+      .then(function() {
+        res.json({ message: "Visit Saved" });
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
 };

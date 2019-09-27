@@ -1,38 +1,39 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext"
-import axios from  "axios";
+import axios from "axios";
 import Pet from "../components/Family/index"
 
 class PetFamily extends React.Component {
   static contextType = UserContext;
-  state = {
-    pets: []
-  }
-  componentDidMount() {
-    let currentComponent = this;
-    axios.get(`/api/user/${this.context.user.id}/petFamily`).then(data => {
-      console.log(data);
-      currentComponent.setState({
-        pets: data.data.pets
-      });
-    });
-  }
+state = {
+  pets: []
+}
 
-  render() {
-    const { user } = this.context;
-    return (
+componentDidMount() {
+  let currentComponent = this;
+  axios.get(`/api/user/${this.context.user.id}/petFamily`).then(data => {
+    console.log(data);
+    currentComponent.setState({
+      pets: data.data.pets
+    });
+  });
+}
+
+render() {
+  const { user } = this.context;
+  return (
     <>
-    {this.state.pets.map( item => {
+      {this.state.pets.map(item => {
         return (
-            <Pet 
+          <Pet
             key={item.id}
-            img={item.image}
+            img={item.file}
             name={item.name}
-            />
+          />
         )
-    })}
-    <button className="familyCard">
+      })}
+      <button className="familyCard">
         <Link to={`/user/${user.id}/pets/createPet`}>
           <div>
             <img
@@ -48,7 +49,7 @@ class PetFamily extends React.Component {
       </button>
     </>
   );
-  }
+}
 }
 
 

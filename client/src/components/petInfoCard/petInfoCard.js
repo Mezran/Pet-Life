@@ -37,13 +37,13 @@ function PetInfoCard(props) {
           </p>
         </div>
         <div className="col-md-2 text-center buttons">
-            <Link to="" className="btn btn-primary">
-              Edit
+          <Link to="" className="btn btn-primary">
+            Edit
             </Link>
-            <Link to="" className="btn btn-primary">
-              Remove
+          <Link to="" className="btn btn-primary">
+            Remove
             </Link>
-          </div>
+        </div>
       </div>
     </div>
   );

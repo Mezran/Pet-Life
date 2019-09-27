@@ -8,15 +8,37 @@ class PetSitter extends Component {
   static contextType = UserContext;
 
   state = {
-    petSitters: []
+    petSitters: [],
+    mounted: false,
+    refreshed: false
   };
 
+  componentDidUpdate(){
+    if(this.state.mounted == false){
+      if(this.state.refreshed == false){
+        console.log("updateRan")
+        axios.get(`/api/user/${this.context.user.id}/petSitters`).then(res => {
+          console.log(res.data);
+          this.setState({
+            petSitters: res.data.petSitters,
+            refreshed: true
+          });
+        });
+      } else {
+        this.setState ({
+          mounted: true
+        })
+      }
+    }
+  }
+
   componentDidMount() {
-    let currentComponent = this;
-    axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function(res) {
+    if (!this.context.user) return;
+    axios.get(`/api/user/${this.context.user.id}/petSitters`).then(res => {
       console.log(res.data);
-      currentComponent.setState({
-        petSitters: res.data.petSitters
+      this.setState({
+        petSitters: res.data.petSitters,
+        mounted: true
       });
     });
   }

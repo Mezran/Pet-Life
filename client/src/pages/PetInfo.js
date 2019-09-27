@@ -21,7 +21,7 @@ static contextType = UserContext;
     });
   }
 
-  render() {
+  render() { 
     return (
       <div className="petInfoCont">
         <div className="container">

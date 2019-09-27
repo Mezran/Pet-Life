@@ -2,38 +2,29 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../context/UserContext";
+import VisitTable from "../VisitTable";
 
 class PastVisits extends Component {
     static contextType = UserContext
     state = {
         mounted: false,
         refreshed: false,
-        results: [
-            // {
-            //     date: "1",
-            //     doctorsName: "First doctorsName",
-            //     hospital: "pet Hospital 1",
-            // },
-            // {
-            //     date: "2",
-            //     doctorsName: "Second doctorsName",
-            //     hospital: "pet Hospital 2",
-            // }
-        ]
+        pets: [],
+        activePetVisit: []
     }
     // componentDidUpdate() {
     //     if (this.state.mounted == false) {
     //         if (this.state.refreshed == false) {
-    //             axios.get(`/api/user/${this.context.user.id}/visits`)
-    //                 .then(function (res) {
-    //                     console.log(res.data);
+    //             axios.get(`/api/user/${this.context.user.id}/petFamily`)
+    //                 // console.log(this.context.user.id)
+    //                 .then(res => {
+    //                     console.log(res.data.pets);
     //                     this.setState({
-    //                         results: res.data,
+    //                         visits: res.data.pets,
     //                         refreshed: true
     //                     });
     //                 });
-
-    //         } else {
+    //         } else { 
     //             this.setState({
     //                 mounted: true
     //             })
@@ -41,16 +32,29 @@ class PastVisits extends Component {
     //     }
     // }
     componentDidMount() {
-        if (!this.context.user) return
-        axios.get(`/api/user/${this.context.user.id}/visits`)
+        // if (!this.context.user) return
+        axios.get(`/api/user/${this.context.user.id}/petFamily`)
             .then(res => {
-                console.log(res.data);
+                console.log(res.data.pets[0].docVisits);
                 this.setState({
-                    results: res.data,
+                    pets: res.data.pets[0].docVisits,
+                    activePetVisit: res.data.pets[0].docVisits,
                     mounted: true
                 })
             })
     }
+
+    // componentDidMount() {
+    //     let currentComponent = this;
+    //     axios.get(`/api/user/${this.context.user.id}/petFamily`).then(response => {
+    //         console.log(response);
+    //         currentComponent.setState({
+    //             pets: response.data.pets,
+    //             activePetPrescription: response.data.pets[0].prescriptions,
+    //             mounted: true
+    //         });
+    //     });
+    // }
 
     render() {
         return (
@@ -67,15 +71,18 @@ class PastVisits extends Component {
                     </thead>
                     <tbody>
 
-                        {this.state.results.map(result => (
-                            <tr>
-                                <td>{result.date}</td>
-                                <td>{result.doctorsName}</td>
-                                <td>{result.hospital}</td>
-                                <td> <Link to="/visits/viewDetail" >See Details</Link></td>
-                            </tr>
+                        {this.state.pets.map(result => (
+                            <VisitTable
+                                key={result._id}
+                                date={result.date}
+                                doctorsName={result.doctorsName}
+                                hospital={result.hospital}
+                            />
+
                         ))}
                     </tbody>
+
+
                 </table>
 
             </>

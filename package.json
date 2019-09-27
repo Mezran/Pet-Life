@@ -30,6 +30,7 @@
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.0",
     "mongoose": "^5.4.19",
-    "react-datepicker": "^2.9.6"
+    "react-datepicker": "^2.9.6",
+    "reactstrap": "^8.0.1"
   }
 }

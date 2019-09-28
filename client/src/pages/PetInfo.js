@@ -23,9 +23,9 @@ static contextType = UserContext;
 
   deletePet = id => {
     console.log("hello: " + id);
-    axios.delete(`/api/user/${this.context.user.id}/pet/`).then((response) => {
-      console.log(response);
-    });
+    // axios.delete(`/api/user/${this.context.user.id}/pet/`).then((response) => {
+    //   console.log(response);
+    // });
   };
 
   render() { 
@@ -36,7 +36,8 @@ static contextType = UserContext;
         </div>
         {this.state.pets.map( item => (
           <PetInfoCard
-          key={item.id}
+          key={item._id}
+          id={item._id}
           img={item.image}
           name={item.name}
           breed={item.breed}

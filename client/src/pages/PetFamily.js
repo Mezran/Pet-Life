@@ -27,7 +27,7 @@ render() {
       {this.state.pets.map(item => {
         return (
           <Pet
-            key={item.id}
+            key={item._id}
             img={item.file}
             name={item.name}
           />

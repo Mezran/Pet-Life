@@ -17,6 +17,7 @@ class CreatePetSitter extends Component {
   };
 
   setFile = filePath => {
+    console.log(filePath)
     this.setState({
       file: filePath
     });

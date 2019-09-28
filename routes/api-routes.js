@@ -171,6 +171,35 @@ module.exports = function(app) {
       });
   });
 
+  app.delete("/api/user/:id/petFamily", function(req, res) {
+    let id = req.params.id;
+    console.log("pet delete: " + id)
+    Pet.deleteOne(
+      {
+        _id: id
+      },
+      function(err, removed) {
+        if (err) {
+          console.log(err);
+          res.send(err);
+        } else {
+          console.log("else: " + removed);
+          res.send(removed);
+        }
+      }
+    );
+  });
+
+  app.get("/api/user/:id/petFamily", function(req, res) {
+    let id = req.params.id;
+    User.findById(id)
+      .populate("pets")
+      .then(response => res.json(response))
+      .catch(function(err) {
+        console.log(err);
+      });
+  });
+
   app.get("/api/user/:id/visits", function(req, res) {
     Pet.find({})
       .then(function(found) {

@@ -1,5 +1,5 @@
 import React from "react";
-import API from "../utils/API2";
+// import API from "../utils/API2";
 import axios from "axios";
 import PetInfoCard from "../components/petInfoCard/petInfoCard";
 import UserContext from "../context/UserContext"
@@ -21,6 +21,19 @@ static contextType = UserContext;
     });
   }
 
+  deletePet = (petId) => {
+    axios.delete(`/api/user/${petId}/petFamily`).then(function (res) {
+      console.log("pet deleted")
+      });
+      let currentComponent = this;
+      axios.get(`/api/user/${this.context.user.id}/petFamily`).then(function (res) {
+        console.log(res.data);
+        currentComponent.setState({
+          pets: res.data.pets
+        });
+      });
+ };
+
   render() { 
     return (
       <div className="petInfoCont">
@@ -29,7 +42,8 @@ static contextType = UserContext;
         </div>
         {this.state.pets.map( item => (
           <PetInfoCard
-          key={item.id}
+          key={item._id}
+          id={item._id}
           img={item.image}
           name={item.name}
           breed={item.breed}
@@ -38,6 +52,7 @@ static contextType = UserContext;
           temperament={item.temperament}
           diet={item.diet}
           directions={item.directions}
+          deletePetCB={this.deletePet}
         />
           )
         )}

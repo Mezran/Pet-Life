@@ -40,7 +40,7 @@ function PetInfoCard(props) {
           <Link to="" className="btn btn-primary">
             Edit
             </Link>
-          <Link to="" className="btn btn-primary">
+          <Link to="" onClick={props.deletePetCB.bind(this, props.id)} className="btn btn-primary">
             Remove
             </Link>
         </div>

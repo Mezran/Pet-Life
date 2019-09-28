@@ -41,7 +41,7 @@ class AddVisits extends Component {
       <div className="VisitPage">
         <div className="card">
           <div className="card-header bg-dark text-light">
-            Add Visits for {this.props.name}
+            Add Visits for <strong>{this.props.name}</strong>
           </div>
           <div className="card-body">
             <form>

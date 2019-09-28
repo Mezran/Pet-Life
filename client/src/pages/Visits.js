@@ -82,7 +82,11 @@ class Visits extends Component {
               <button
                 onClick={e => this.activePet(e)}
                 id={result._id}
-                className="nav-link active"
+                className={
+                  result._id === this.state.activePet.id
+                    ? "nav-link active"
+                    : "nav-link"
+                }
               >
                 {result.name}
               </button>
@@ -91,7 +95,6 @@ class Visits extends Component {
         </ul>
 
         <div className="visit-table">
-          <h4>Past Visits for {this.state.activePet.name}</h4>
           {this.state.activePetVisit.length < 1 ? (
             <div className="alert alert-warning mt-4" role="alert">
               This pet doesn't have doctor visits
@@ -122,7 +125,6 @@ class Visits extends Component {
         <AddVisits
           id={this.state.activePet.id}
           name={this.state.activePet.name}
-          onClick={e => this.activePet(e)}
         />
       </div>
     );

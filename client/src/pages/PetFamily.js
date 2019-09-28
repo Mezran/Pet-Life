@@ -6,6 +6,7 @@ import Pet from "../components/Family/index"
 
 class PetFamily extends React.Component {
   static contextType = UserContext;
+  
 state = {
   pets: []
 }
@@ -28,7 +29,7 @@ render() {
         return (
           <Pet
             key={item._id}
-            img={item.file}
+            img={item.image}
             name={item.name}
           />
         )

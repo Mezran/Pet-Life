@@ -26,6 +26,7 @@ class CreatePet extends React.Component {
   };
 
   setFile = filePath => {
+    console.log(filePath)
     this.setState({
       image: filePath
     });
@@ -45,9 +46,11 @@ class CreatePet extends React.Component {
       image: this.state.file
     };
     console.log(petData);
+    let petFamUrl = `/user/${this.context.user.id}/petFamily`;
     axios
       .post(`/api/user/${this.context.user.id}/createPet`, petData)
       .then(function() {
+        window.location = petFamUrl;
         // window.location.href = `/user/${this.context.user.id}/petfamily`;
       });
     // API.savePet(petData).then( data => {

@@ -13,7 +13,7 @@ function Pet(props) {
         <Link to={`/user/${user.id}/pets`}>
           <div>
             <img
-              src={props.img}
+              src={props.img ? props.img : "https://via.placeholder.com/150"}
               className="card-img-top familyCard"
               alt="first pet"
             />

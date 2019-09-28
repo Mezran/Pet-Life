@@ -24,11 +24,6 @@ const doctorVisitSchema = new mongoose.Schema({
   },
   hospital: {
     type: String
-  },
-  details: {
-    title: String,
-    url: String,
-    comments: String
   }
 });
 

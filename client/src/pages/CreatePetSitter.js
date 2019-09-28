@@ -6,7 +6,7 @@ import PetSitter from "./PetSitter";
 import UserContext from "../context/UserContext";
 
 class CreatePetSitter extends Component {
-    static contextType = UserContext;
+  static contextType = UserContext;
 
   state = {
     file: "",
@@ -28,13 +28,15 @@ class CreatePetSitter extends Component {
     });
   };
 
- reDirect (petSitter) {
-   let petSitterUrl = `/user/${this.context.user.id}/petSitters`
-    axios.post(`/api/user/${this.context.user.id}/petSitters`, petSitter).then(function() {
-        window.location=petSitterUrl;
+  reDirect(petSitter) {
+    let petSitterUrl = `/user/${this.context.user.id}/petSitters`;
+    axios
+      .post(`/api/user/${this.context.user.id}/petSitters`, petSitter)
+      .then(function() {
+        window.location = petSitterUrl;
       });
-  };
-  
+  }
+
   onSubmit = e => {
     e.preventDefault();
     const petSitter = {
@@ -45,7 +47,7 @@ class CreatePetSitter extends Component {
       other: this.state.other
     };
     console.log(petSitter);
-   this.reDirect(petSitter)
+    this.reDirect(petSitter);
   };
 
   render() {
@@ -58,7 +60,10 @@ class CreatePetSitter extends Component {
               <h2>New Pet Sitters</h2>
             </div>
             <div className="col-3 text-right">
-              <Link to={`/user/${user.id}/petSitters`} className="btn btn-success btn-lg">
+              <Link
+                to={`/user/${user.id}/petSitters`}
+                className="btn btn-secondary"
+              >
                 Go back to your sitters
               </Link>
             </div>

@@ -15,4 +15,23 @@ $orange: #f77000;
 }
 .main-content {
   padding: 50px 70px;
+  h2 {
+    color: #fa9000;
+    text-transform: uppercase;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.nav.nav-tabs {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  .nav-link {
+    border-bottom: solid thin #dee2e6;
+  }
+  .nav-link.active {
+    border-bottom: solid thin #fff;
+  }
 }

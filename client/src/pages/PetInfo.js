@@ -21,6 +21,13 @@ static contextType = UserContext;
     });
   }
 
+  deletePet = id => {
+    console.log("hello: " + id);
+    axios.delete(`/api/user/${this.context.user.id}/pet/`).then((response) => {
+      console.log(response);
+    });
+  };
+
   render() { 
     return (
       <div className="petInfoCont">
@@ -38,6 +45,7 @@ static contextType = UserContext;
           temperament={item.temperament}
           diet={item.diet}
           directions={item.directions}
+          deletePetCB={this.deletePet}
         />
           )
         )}

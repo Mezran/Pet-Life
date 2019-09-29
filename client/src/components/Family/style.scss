@@ -1,7 +1,31 @@
-.familyCard{
-    width: 270px;
-    height: 200px;
-    margin: 50px;
-    border: 5px;
-    border-radius: 100%;
+.familyCard {
+  background: transparent;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  &:hover {
+    text-decoration: none;
+    opacity: 0.7;
+  }
+  .petImg {
+    width: 150px;
+    height: 150px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 100px;
+    overflow: hidden;
+    img {
+      min-height: 150px;
+      min-width: 150px;
+    }
+  }
+  p {
+    margin-top: 20px;
+    text-transform: uppercase;
+    color: #333;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }

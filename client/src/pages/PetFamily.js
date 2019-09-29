@@ -8,17 +8,39 @@ class PetFamily extends React.Component {
   static contextType = UserContext;
   
 state = {
-  pets: []
+  pets: [],
+  mounted: false,
+  refreshed: false
 }
 
 componentDidMount() {
-  let currentComponent = this;
-  axios.get(`/api/user/${this.context.user.id}/petFamily`).then(data => {
-    console.log(data);
-    currentComponent.setState({
-      pets: data.data.pets
+  if (!this.context.user) return;
+  axios.get(`/api/user/${this.context.user.id}/petFamily`).then(res => {
+    console.log(res.data);
+    this.setState({
+      pets: res.data.pets,
+      mounted: true
     });
   });
+}
+
+componentDidUpdate(){
+  if(this.state.mounted === false){
+    if(this.state.refreshed === false){
+      console.log("updateRan + petFam")
+      axios.get(`/api/user/${this.context.user.id}/petFamily`).then(res => {
+        console.log(res.data);
+        this.setState({
+          pets: res.data.pets,
+          refreshed: true
+        });
+      });
+    } else {
+      this.setState ({
+        mounted: true
+      })
+    }
+  }
 }
 
 render() {

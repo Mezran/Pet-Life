@@ -9,7 +9,7 @@ function SitterCard(props) {
         <div className="row ">
           {props.file ? (
             <div className="col-md-3 text-center">
-              <img src={props.file} style={{height: 250, width: 250}}></img>
+              <img src={props.file}></img>
             </div>
           ) : null}
           <div className={props.file ? "col-md-7" : "col-10"}>
@@ -21,10 +21,10 @@ function SitterCard(props) {
             </div>
           </div>
           <div className="col-md-2 text-center buttons">
-            <Link to="" className="btn btn-primary">
-              Edit
-            </Link>
-            <button className="btn btn-danger" onClick={() => props.deleteSitter(props.id)}>
+            <button
+              className="btn btn-secondary"
+              onClick={() => props.deleteSitter(props.id)}
+            >
               Remove
             </button>
           </div>

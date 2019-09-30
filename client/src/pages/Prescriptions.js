@@ -102,7 +102,7 @@ class PrescriptionsPage extends Component {
           <div className="col-12 text-right">
             <Link
               to={`/user/${userId}/prescription/addDetail/${this.state.activePet.id}`}
-              className="btn btn-warning"
+              className="btn btn-warning btn-lg"
             >
               Add new prescription for {this.state.activePet.name}!
             </Link>

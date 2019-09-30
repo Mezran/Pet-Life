@@ -76,7 +76,7 @@ class AddDetailForm extends Component {
             type="submit"
             // post={this.props.postTo}
             onClick={this.handleSubmitEvent}
-            className="btn btn-primary"
+            className="btn btn-warning"
           >
             Submit
           </button>

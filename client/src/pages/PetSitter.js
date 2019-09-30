@@ -13,10 +13,10 @@ class PetSitter extends Component {
     refreshed: false
   };
 
-  componentDidUpdate(){
-    if(this.state.mounted === false){
-      if(this.state.refreshed === false){
-        console.log("updateRan")
+  componentDidUpdate() {
+    if (this.state.mounted === false) {
+      if (this.state.refreshed === false) {
+        console.log("updateRan");
         axios.get(`/api/user/${this.context.user.id}/petSitters`).then(res => {
           console.log(res.data);
           this.setState({
@@ -25,9 +25,9 @@ class PetSitter extends Component {
           });
         });
       } else {
-        this.setState ({
+        this.setState({
           mounted: true
-        })
+        });
       }
     }
   }
@@ -43,28 +43,30 @@ class PetSitter extends Component {
     });
   }
 
-  deleteButton = (petSitterId) => {
-    axios.delete(`/api/user/${petSitterId}/petSitters`).then(function (res) {
-      console.log("sitter deleted")
-      });
-      let currentComponent = this;
-      axios.get(`/api/user/${this.context.user.id}/petSitters`).then(function (res) {
+  deleteButton = petSitterId => {
+    axios.delete(`/api/user/${petSitterId}/petSitters`).then(function(res) {
+      console.log("sitter deleted");
+    });
+    let currentComponent = this;
+    axios
+      .get(`/api/user/${this.context.user.id}/petSitters`)
+      .then(function(res) {
         console.log(res.data);
         currentComponent.setState({
           petSitters: res.data.petSitters
         });
       });
- };
+  };
 
   render() {
     const { user } = this.context;
     return (
       <div className="PetSitter">
         <div className="row">
-          <div className="col-9">
+          <div className="col-6">
             <h2>Pet Sitters </h2>
           </div>
-          <div className="col-3 text-right">
+          <div className="col-6 text-right">
             <Link
               to={`/user/${user.id}/petSitters/createPetSitter`}
               className="btn btn-warning btn-lg"

@@ -4,45 +4,62 @@ import "./petInfoCard.scss";
 
 function PetInfoCard(props) {
   // let bday = props.birthday.splice(0, -12)
+  const placeholderImg =
+    "https://www.missingdogsuk.co.uk/wp-content/plugins/wp-job-manager-resumes/assets/images/candidate.png";
   return (
     <div className="PetInfoCard card">
       <div className="row">
-        <div className="col-3 text-center petInfoImage">
-          <img src={props.img}></img>
+        <div className="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
+          <div className="petImg">
+            <img src={props.img || placeholderImg}></img>
+          </div>
         </div>
-        <div className="col-7 text-start">
-          <p>
-            <strong>Name: </strong>
-            {props.name}
-          </p>
-          <p>
-            <strong>Nickname: </strong>
-            {props.nickname}
-          </p>
-          <p>
-            <strong>Breed: </strong>
-            {props.breed}
-          </p>
-          <p>
-            <strong>Birthday: </strong>
-            {props.birthday}
-          </p>
-          <p>
-            <strong>Temperament: </strong>
-            {props.temperament}
-          </p>
-          <p>
-            <strong>Diet: </strong>
-            {props.diet}
-          </p>
+        <div className="col-lg-7 text-start">
+          {props.name ? (
+            <p>
+              <strong>Name: </strong>
+              {props.name}
+            </p>
+          ) : null}
+          {props.nickname ? (
+            <p>
+              <strong>Nickname: </strong>
+              {props.nickname}
+            </p>
+          ) : null}
+          {props.breed ? (
+            <p>
+              <strong>Breed: </strong>
+              {props.breed}
+            </p>
+          ) : null}
+          {props.birthday ? (
+            <p>
+              <strong>Birthday: </strong>
+              {props.birthday}
+            </p>
+          ) : null}
+          {props.temperament ? (
+            <p>
+              <strong>Temperament: </strong>
+              {props.temperament}
+            </p>
+          ) : null}
+          {props.diet ? (
+            <p>
+              <strong>Diet: </strong>
+              {props.diet}
+            </p>
+          ) : null}
         </div>
         <div className="col-md-2 text-center buttons">
-          <Link to="" className="btn btn-primary">
-            Edit
-            </Link>
-          <Link to="" onClick={props.deletePetCB.bind(this, props.id)} className="btn btn-primary">
+          <Link
+            to=""
+            onClick={props.deletePetCB.bind(this, props.id)}
+            className="btn btn-secondary btn-sm"
+          >
             Remove
-            </Link>
+          </Link>
         </div>
       </div>
     </div>

@@ -9,12 +9,12 @@ function PetInfoCard(props) {
   return (
     <div className="PetInfoCard card">
       <div className="row">
-        <div className="col-3 text-center">
+        <div className="col-12 col-sm-12 col-md-6 col-lg-3 text-center">
           <div className="petImg">
             <img src={props.img || placeholderImg}></img>
           </div>
         </div>
-        <div className="col-7 text-start">
+        <div className="col-lg-7 text-start">
           {props.name ? (
             <p>
               <strong>Name: </strong>

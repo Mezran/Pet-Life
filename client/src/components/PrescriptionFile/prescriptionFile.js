@@ -7,10 +7,10 @@ function PrescriptionFile(props) {
     <div className="prescriptionFile">
       <div className="card">
         <div className="row ">
-          <div className="col-md-4">
+          <div className="col-md-6 col-lg-4">
             <img src={props.file}></img>
           </div>
-          <div className="col-md-8">
+          <div className="col-md-6 col-lg-8">
             <div className="card-body">
               <h5 className="card-title">{props.title}</h5>
               <p className="card-text">{props.comment}</p>

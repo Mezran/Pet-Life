@@ -50,7 +50,7 @@ class PetFamily extends React.Component {
         {this.state.pets.map(item => {
           return <Pet key={item._id} img={item.image} name={item.name} />;
         })}
-        <div className="col-12 col-sm-3 text-center">
+        <div className="col-12 col-md-6 col-lg-3 text-center">
           <button className="familyCard">
             <Link to={`/user/${user.id}/pets/createPet`}>
               <div>

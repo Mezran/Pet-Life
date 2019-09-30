@@ -7,7 +7,7 @@ function Pet(props) {
   return (
     <UserContext.Consumer>
       {({ user }) => (
-        <div className="col-12 col-sm-3 ">
+        <div className="col-12 col-md-6 col-lg-3">
           <div className="familyCard text-center">
             <Link to={`/user/${user.id}/pets`}>
               <div>

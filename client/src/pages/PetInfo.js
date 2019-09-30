@@ -60,7 +60,7 @@ class PetInfo extends React.Component {
     return (
       <div className="petInfoCont">
         <div className="container">
-          <h1>Pet Info</h1>
+          <h2>Pet Info</h2>
         </div>
         {this.state.pets.map(item => (
           <PetInfoCard

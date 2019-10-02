@@ -36,7 +36,7 @@ function PetInfoCard(props) {
           {props.birthday ? (
             <p>
               <strong>Birthday: </strong>
-              {props.birthday}
+              {props.birthday.slice(0, -14)}
             </p>
           ) : null}
           {props.temperament ? (

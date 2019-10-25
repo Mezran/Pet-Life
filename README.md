@@ -11,5 +11,24 @@ Pet Life is a MERN stack web application designed to be a one stop website for k
 - Sass (or scss) - CSS framework
 
 ## Walkthrough
-- Deployment link: https://pet-life-2019.herokuapp.com
-![Login Page](./screens/app-Login.png)
+Deployment link: https://pet-life-2019.herokuapp.com
+Feel free to follow along with this example account information
+- Username: test
+- Password: testpassword123
+</br>
+
+Home page
+
+![LandingPage](./screens/landingPage.png)
+
+![Login Page](./screens/loginPage.png)
+
+![PetFamily](./screens/petFamily.png)
+
+![PetInfo](./screens/petInfo.png)
+
+![Prescriptions](./screens/prescriptions.png)
+
+![DoctorVisits](./screens/doctorsVisits.png)
+
+![PetSitter](./screens/petSitters.png)

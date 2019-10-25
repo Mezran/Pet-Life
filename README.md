@@ -3,12 +3,14 @@
 Pet Life is a MERN stack web application designed to be a one stop website for keeping track of all your pets, pet information, doctors visits, prescriptions and sitters information. https://pet-life-2019.herokuapp.com
 
 ## Built With
-- MongoDB - NoSQL Database
-- Express.js - Node.js framework
-- React.js - MVC front-end framework
-- Node.js - JavaScript runtime
-- npm - Node package manager
-- Sass (or scss) - CSS framework
+
+- [Mongo DB](https://www.mongodb.com/) - NoSQL Database
+- [Express.js](https://expressjs.com/) - Node.js framework
+- [React.js](https://reactjs.org/) - MVC front-end framework
+- [Node.js](https://nodejs.org/en/) - JavaScript runtime
+- [npm](https://www.npmjs.com) - Node package manager
+- [Sass](https://sass-lang.com) (or scss) - CSS framework
+
 
 ## Views
 ### Deployment link:
@@ -57,3 +59,8 @@ The doctor visits page allows users to add doctors visits for their pets based o
 The pet sitter page displays some basic information about their pet sitters as well as allows the user to manage pet sitters by adding and removing them.
 
 ![PetSitter](./screens/petSitters.png)
+
+## Authors
+See the list of [contributors](https://github.com/Mezran/Pet-Life/graphs/contributors) who participated in this project along with individual commit history.
+
+copyright 2019 &copy; Stephen Allen

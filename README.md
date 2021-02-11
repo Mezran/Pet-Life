@@ -25,7 +25,6 @@ PetLife is a simple application for storing pet information. On the landing page
 > Note: We use protected routes to protect the application and the users personal information. For example if you were to attempt to bypass the login process and enter the hashed ID such as https://pet-life-2019.herokuapp.com/user/5db3258a376a8f002a6be58d/petfamily (the hashed id for the test account provided below) in the url bar, you will be redirected back to the login page.
 
 ### Login Page
-Feel free to follow along with the example account information above or create your own account.
 
 ![Login Page](./screens/loginPage.png)
 

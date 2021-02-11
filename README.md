@@ -1,6 +1,6 @@
 # Pet Life
 ## Overview
-Pet Life is a MERN stack web application designed to be a one stop website for keeping track of all your pets, pet information, doctors visits, prescriptions and sitters information. https://pet-life-2019.herokuapp.com
+Pet Life is a MERN stack web application designed to be a one stop website for keeping track of all your pets, pet information, doctors visits, prescriptions and sitters information. 
 
 ## Built With
 
@@ -13,12 +13,6 @@ Pet Life is a MERN stack web application designed to be a one stop website for k
 
 
 ## Views
-### Deployment link:
-https://pet-life-2019.herokuapp.com
-### Test account credentials
-- Username: test
-- Password: testpassword123
-</br>
 
 ### Landing page
 PetLife is a simple application for storing pet information. On the landing page we have two options:
